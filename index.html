@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
+  <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <div class="sidenavLeft">
+    <p>From/To File</p>
+	     <label for="file-upload" class="custom-file-upload" style="text-align: center">
+    Import graph
+    </label>
+    <div> <input id="file-upload" type="file" onchange="loadFile()"/></div>
+    <div> <input type="submit" value="Export graph" onclick="test()" /></div>
+  </div>
+  <pre>
+<pre>
+  <div class="sidenavRight">
+    <p>Add a new Transmitter</p>
+    <input type="text" placeholder="Name"/>
+    <input type="text" placeholder="Year"/>
+    <input type="text" placeholder="Received from"/>
+    <input type="text" placeholder="Transmitted to"/>
+    <input type="submit" value="Add Node" onclick="test()" />
+  </div>
+
+  <div id="graph" style="text-align: center;"></div>
+	<script type="text/javascript" src="app.js"></script>
