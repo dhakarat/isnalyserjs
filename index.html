@@ -8,11 +8,24 @@
   <link rel="stylesheet" href="style.css">
   <div class="sidenavLeft">
     <p>From/To File</p>
-	     <label for="file-upload" class="custom-file-upload" style="text-align: center">
-    Import graph
+      
+      <!-- load transmissions -->
+	  <label for="transmissions-upload" class="custom-file-upload" style="text-align: center">
+    Import Transmissions
     </label>
-    <div> <input id="file-upload" type="file" onchange="loadFile()"/></div>
-    <div> <input type="submit" value="Export graph" onclick="test()" /></div>
+    <div class="transmissions"> <input id="transmissions-upload" type="file" multiple onchange="loadTransmissionsFile()"/></div>
+      
+    <!-- load transmitters -->
+    <label for="transmitters-upload" class="custom-file-upload" style="text-align: center">
+    Import Transmitters
+    </label>
+    <div class="transmitters" ><input id="transmitters-upload" type="file" multiple onchange="loadTransmittersFile()"/></div>
+
+    <!-- render graph -->
+    <div> <input type="submit" value="Render Graph" onclick="renderGraph()" /></div>
+
+    <!-- export -->
+    <div> <input type="submit" value="Export Graph" onclick="test()" /></div>
   </div>
   <pre>
 <pre>
