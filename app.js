@@ -122,36 +122,33 @@ function findClosestDAH(dAH, transmitter, year, stepsize) {
 
 
 function matchToTimeline() {
-  var stepsize = 25;
-  var timeline = buildTimelineNew(25)[1];
+  var stepsize = 15;
+  var timeline = buildTimelineNew(15)[1];
   var dataTransmitters = d3.csvParse(transmittersReader.result);
-
+  var constraints = [];
 
   
   for (var i = 0; i < timeline.length; i++) {
     // findClosestDAH(timeline[i], stepsize);
-    console.log('year:');
-    console.log(timeline[i]);
-    console.log('_______');
-    var closestList = [];
+    // console.log('year:');
+    // console.log(timeline[i]);
+    // console.log('_______');
+    let closestList = [];
+    let constraintString = '{ rank=same ' + timeline[i];
+    // console.log()
     for (var j = 0; j < dataTransmitters.length; j++) {
       closest = findClosestDAH(dataTransmitters[j].dAH, dataTransmitters[j].Transmitters, timeline[i],stepsize);
       if (closest){
-
-        closestList.push(closest);
+        constraintString += ' '+closest;
       }
     }
-    console.log(closestList);
-
-
-    // dataTransmitters.forEach((item,i) =>
-    //   // console.log(item.dAH)
-    //   findClosestDAH(item.dAH, timeline[i], stepsize)
-    //   );
-
+    constraintString += ' }';
+    // console.log(constraintString);
+    constraints.push(constraintString);
   }
-
-  console.log(dataTransmitters);
+  return constraints
+  // console.log(constraints);
+  // console.log(dataTransmitters);
 }
 
 
@@ -173,8 +170,9 @@ function buildConstraints() {
 
 
 function renderGraphNew() {
-  var timeline = buildTimelineNew(25)[0];
-  var constraints = buildConstraints();
+  var timeline = buildTimelineNew(15)[0];
+  // var constraints = buildConstraints();
+  var constraints = matchToTimeline()
   var dot = buildGraphNew(timeline, constraints);
 
   graphviz.width(500);
@@ -184,7 +182,7 @@ function renderGraphNew() {
   var dotString = dotLines.join('');
   // render graph in canvas
 
-  // console.log(dotString);
+  console.log(dotString);
 
   graphviz
       .dot(dotString)
@@ -213,7 +211,7 @@ function buildGraph(timeline) {
 
 function renderGraph() {
   // create a graph to draw
-  var timeline = buildTimeline(25);
+  var timeline = buildTimeline(15);
   var graph = buildGraph(timeline);
   // set dimensions
   graphviz.width(500);
