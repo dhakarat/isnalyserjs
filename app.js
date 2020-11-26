@@ -59,22 +59,26 @@ function buildTimelineNew(stepsize) {
   // init timeline subgraph
   var timeline = [' subgraph {'];
   timeline.push( ' node [shape=none]');
+
+  var timelineList = [];
   // append new nodes to timeline according to stepsize
   for (var i = timelineMin; i < timelineMax;) {
-      timeline.push(' ' + i.toString()  + '->' + (i+stepsize).toString() + ' [penwidth = 5, arrowhead = None]');
-      i = i+stepsize
+      timeline.push(' ' + i.toString()  + '->' + (i+stepsize).toString() + ' [penwidth = 3, arrowhead = None]');
+      timelineList.push(i);
+      i = i+stepsize;
   }
   // ranking constraints
-  timeline.push(' rank="same"  85 G');
+  // timeline.push(' rank="same"  85 G');
 
   // complete timeline subgraph
   timeline.push('}');
+  console.log(timelineList);
 
-  return timeline;
+  return [timeline, timelineList];
 
 }
 
-function buildGraphNew(timeline) {
+function buildGraphNew(timeline, constraints) {
   // get data from loaded files
   var dataTransmitters = d3.csvParse(transmittersReader.result);
   var dataTransmissions = d3.csvParse(transmissionsReader.result);
@@ -84,23 +88,56 @@ function buildGraphNew(timeline) {
   dataTransmitters.forEach((item,i) =>
       dot.push(' ' + item.Transmitters)
       );
+  // add timeline
+  dot = dot.concat(timeline);
+  // add constraints
+  dot = dot.concat(constraints);
   // add connections
   dataTransmissions.forEach((item,i) =>
       dot.push(' ' + item.From + ' -> ' + item.To)
       );
-  // add timeline
-  dot = dot.concat(timeline);
   // and thats it
   dot.push('}');
+
+  console.log(dot);
 
   return [dot];
 
 }
 
 
+
+
+function matchToTimeline() {
+  var timeline = buildTimelineNew(25)[1];
+  console.log(timeline);
+
+  var dataTransmitters = d3.csvParse(transmittersReader.result);
+  console.log(dataTransmitters);
+}
+
+
+
+
+
+
+function buildConstraints() {
+  var constraints = [];
+  constraints.push(' {rank=same  10 A}');
+  constraints.push(' {rank=same  35 B C}');
+  constraints.push(' {rank=same  60 D}');
+  constraints.push(' {rank=same  85 F G E H}');
+
+  // constraints.push(' ');
+
+  return constraints;
+}
+
+
 function renderGraphNew() {
-  var timeline = buildTimelineNew(25);
-  var dot = buildGraphNew(timeline);
+  var timeline = buildTimelineNew(25)[0];
+  var constraints = buildConstraints();
+  var dot = buildGraphNew(timeline, constraints);
 
   graphviz.width(500);
   graphviz.height(1100);
@@ -108,6 +145,9 @@ function renderGraphNew() {
   var dotLines = dot[0 % dot.length];
   var dotString = dotLines.join('');
   // render graph in canvas
+
+  // console.log(dotString);
+
   graphviz
       .dot(dotString)
       .render();
