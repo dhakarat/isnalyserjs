@@ -64,15 +64,15 @@ function buildTimelineNew(stepsize) {
   // append new nodes to timeline according to stepsize
   for (var i = timelineMin; i < timelineMax;) {
       timeline.push(' ' + i.toString()  + '->' + (i+stepsize).toString() + ' [penwidth = 3, arrowhead = None]');
-      timelineList.push(i);
+      timelineList.push(i); // also have a list of timeline values
       i = i+stepsize;
   }
+  timelineList.push(85);
   // ranking constraints
   // timeline.push(' rank="same"  85 G');
 
   // complete timeline subgraph
   timeline.push('}');
-  console.log(timelineList);
 
   return [timeline, timelineList];
 
@@ -107,12 +107,50 @@ function buildGraphNew(timeline, constraints) {
 
 
 
+function findClosestDAH(dAH, transmitter, year, stepsize) {
+  // var dataTransmitters = d3.csvParse(transmittersReader.result);
+  // console.log(year);
+  // upper = year+stepsize;
+  // console.log(upper);
+  // if (dAH > year && dAH < (year+stepsize)) {
+  if (year <= dAH && dAH < (year+stepsize)) {
+    console.log(dAH);
+    return transmitter;
+  }
+}
+
+
 
 function matchToTimeline() {
+  var stepsize = 25;
   var timeline = buildTimelineNew(25)[1];
-  console.log(timeline);
-
   var dataTransmitters = d3.csvParse(transmittersReader.result);
+
+
+  
+  for (var i = 0; i < timeline.length; i++) {
+    // findClosestDAH(timeline[i], stepsize);
+    console.log('year:');
+    console.log(timeline[i]);
+    console.log('_______');
+    var closestList = [];
+    for (var j = 0; j < dataTransmitters.length; j++) {
+      closest = findClosestDAH(dataTransmitters[j].dAH, dataTransmitters[j].Transmitters, timeline[i],stepsize);
+      if (closest){
+
+        closestList.push(closest);
+      }
+    }
+    console.log(closestList);
+
+
+    // dataTransmitters.forEach((item,i) =>
+    //   // console.log(item.dAH)
+    //   findClosestDAH(item.dAH, timeline[i], stepsize)
+    //   );
+
+  }
+
   console.log(dataTransmitters);
 }
 
