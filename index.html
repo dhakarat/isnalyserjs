@@ -20,6 +20,9 @@
     Import Transmitters
     </label>
     <div class="transmitters" ><input id="transmitters-upload" type="file" multiple onchange="loadTransmittersFile()"/></div>
+    
+    <!-- step size -->
+    <div class="stepSize"><input type="number" id="stepsize" name="step size" value="15" min="10" max="100" onchange="getStepSize()" /></div>
 
     <!-- render graph -->
     <div> <input type="submit" value="Render Graph" onclick="renderGraph()" /></div>

@@ -31,12 +31,12 @@ input[type="file"] {
   background-color: #EDD4BF; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
-    border-radius: 5px;
+  border-radius: 5px;
 
 }
-.sidenavLeft input[type=submit], input[type=file], input[type=text] {
+.sidenavLeft input[type=submit], input[type=file], input[type=text], input[type=number] {
   /*background-color: #D0E1D4;*/
-     width: 200px;
+  width: 200px;
   border: none;
   /*color: white;*/
   font-family: "font-family", Quicksand, sans-serif;
@@ -47,14 +47,14 @@ input[type="file"] {
   border-radius: 10px;
   border: 2px solid;  /*cursor: pointer;*/
   /*textarea:#000000;*/
-    border-color: #C7BD94;
+  border-color: #C7BD94;
   color: #664147;
-   background-color: #E9E6D8;
+  background-color: #E9E6D8;
 
 
 }
 
-.sidenavLeft input[type=submit]:hover, input[type=file]:hover, input[type=text]:hover{
+.sidenavLeft input[type=submit]:hover, input[type=file]:hover, input[type=text]:hover, input[type=number]:hover{
   background-color: #D0E1D4;
 
 }
