@@ -44,6 +44,15 @@
 #
 # -----------------------------------------------------------------
 
+# ignore undisclosed example data
+example_data/transmitters_ali.csv
+example_data/transmissions_ali.csv
+
+example_data/transmitters_umar.csv
+example_data/transmissions_umar.csv
+
+example_data/_transmitters_ali.csv
+example_data/_transmissions_ali.csv
 # ignore all files starting with . or ~
 .*
 ~*

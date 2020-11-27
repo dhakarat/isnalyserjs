@@ -19,7 +19,7 @@ The `isnalyserjs` is an interactive approach to this problem.
 ## Installation for Development
 So far, the `isnalyserjs` is in a very early stage of development. However, suggesting features, improvements or fixes through github issues is appreciated! To actively participate in development and testing, you can clone this repository and host it locally. This can be done by simply running
 ```bash
-python -m SimpleHTTPServer 8000
+python -m http.server
 ```
 in the `isnalyserjs` directory.
 
