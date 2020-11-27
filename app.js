@@ -1,12 +1,14 @@
 // init reader (to load csv)
 var transmissionsReader = new FileReader();  
 var transmittersReader = new FileReader();
+var stepSize = 15;
 
 // init d3 graphviz object
 var graphviz = d3.select("#graph").graphviz();
 
 
 function loadTransmissionsFile() { 
+  /** Get loaded transmissions file and store in reader variable. */
   // load transmissions file   
   var transmissionsFile = document.querySelector('div.transmissions input[type=file]').files[0];   
   // call buildGraph on load
@@ -18,6 +20,7 @@ function loadTransmissionsFile() {
 
 
 function loadTransmittersFile() {
+  /** Get loaded transmitters file and store in reader variable. */
   // load transmitters file
   var transmittersFile = document.querySelector('div.transmitters input[type=file]').files[0];   
   // call buildTimeline on load
@@ -26,6 +29,16 @@ function loadTransmittersFile() {
     transmittersReader.readAsText(transmittersFile);
   }      
 }
+
+function getStepSize() {
+  /** Get user specified step size and overwrite default value. */
+  // get stepsize entered by user
+  userStepSize = parseInt(document.getElementById('stepsize').value);   
+  if (userStepSize) {
+    stepSize = userStepSize;
+  }      
+}
+
 
 
 
@@ -93,8 +106,7 @@ function isWithinRange(dAH, transmitter, year, stepsize) {
 
 function matchToTimeline() {
   /** Get constraints to place transmitters in timeline according to their death data (dAH) */
-  var stepsize = 15;
-  var timeline = buildTimeline(15)[1]; // get timeline as list
+  var timeline = buildTimeline(stepSize)[1]; // get timeline as list
   var dataTransmitters = d3.csvParse(transmittersReader.result); // get loaded transmitters file
   var constraints = []; // init the constraints we want to return as empty list
   // iterate over years of our timeline
@@ -105,7 +117,7 @@ function matchToTimeline() {
     let constraintString = '{ rank=same ' + timeline[i];
     // iterate over all of our transmitters and get them if they match the current timeline year
     for (var j = 0; j < dataTransmitters.length; j++) {
-      closest = isWithinRange(dataTransmitters[j].dAH, dataTransmitters[j].Transmitters, timeline[i],stepsize);
+      closest = isWithinRange(dataTransmitters[j].dAH, dataTransmitters[j].Transmitters, timeline[i], stepSize);
       if (closest){
         constraintString += ' '+closest;
       }
@@ -124,7 +136,7 @@ function matchToTimeline() {
 function renderGraph() {
   /** Build a complete graph with timeline and constraints and render it. */
   // get timeline as list of strings
-  var timeline = buildTimeline(15)[0];
+  var timeline = buildTimeline(stepSize)[0];
   // get constraints as list of strings
   var constraints = matchToTimeline()
   // get main graph as list of constraints
