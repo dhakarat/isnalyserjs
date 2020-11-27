@@ -86,7 +86,7 @@ function buildGraphNew(timeline, constraints) {
   var dot = ['digraph  {'];
   // add nodes
   dataTransmitters.forEach((item,i) =>
-      dot.push(' ' + item.Transmitters)
+      dot.push(' ' + '"'+item.Transmitters+'"')
       );
   // add timeline
   dot = dot.concat(timeline);
@@ -94,12 +94,12 @@ function buildGraphNew(timeline, constraints) {
   dot = dot.concat(constraints);
   // add connections
   dataTransmissions.forEach((item,i) =>
-      dot.push(' ' + item.From + ' -> ' + item.To)
+      dot.push(' ' +'"'+ item.From +'"'+ ' -> ' + '"'+item.To+'"')
       );
   // and thats it
   dot.push('}');
 
-  console.log(dot);
+  // console.log(dot);
 
   return [dot];
 
@@ -114,8 +114,8 @@ function findClosestDAH(dAH, transmitter, year, stepsize) {
   // console.log(upper);
   // if (dAH > year && dAH < (year+stepsize)) {
   if (year <= dAH && dAH < (year+stepsize)) {
-    console.log(dAH);
-    return transmitter;
+    // console.log(dAH);
+    return '"' + transmitter + '"';
   }
 }
 
@@ -175,8 +175,8 @@ function renderGraphNew() {
   var constraints = matchToTimeline()
   var dot = buildGraphNew(timeline, constraints);
 
-  graphviz.width(500);
-  graphviz.height(1100);
+  graphviz.width(1000);
+  graphviz.height(1500);
   // turn list of dot commands into string
   var dotLines = dot[0 % dot.length];
   var dotString = dotLines.join('');
