@@ -36,7 +36,6 @@ function getStepSize() {
   userStepSize = parseInt(document.getElementById('stepsize').value);   
   if (userStepSize) {
     stepSize = userStepSize;
-    // console.log(stepSize);
   }      
 }
 
