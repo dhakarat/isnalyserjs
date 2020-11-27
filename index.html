@@ -21,8 +21,11 @@
     </label>
     <div class="transmitters" ><input id="transmitters-upload" type="file" multiple onchange="loadTransmittersFile()"/></div>
     
-    <!-- step size -->
-    <div class="stepSize"><input type="number" id="stepsize" name="step size" value="15" min="10" max="100" onchange="getStepSize()" /></div>
+    <!-- step size field -->
+    <div class="stepSize">
+      <label>Step size</label>
+      <input type="number" id="stepsize" name="step size" value="15" min="10" max="100" step="5" onchange="getStepSize()" />
+    </div>
 
     <!-- render graph -->
     <div> <input type="submit" value="Render Graph" onclick="renderGraph()" /></div>
@@ -39,7 +42,7 @@
     <input type="text" placeholder="Received from"/>
     <input type="text" placeholder="Transmitted to"/>
     <input type="submit" value="Add Node" onclick="test()" />
-  </div>
- -->
+  </div> -->
+
   <div id="graph" style="text-align: center;"></div>
 	<script type="text/javascript" src="app.js"></script>
