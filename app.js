@@ -10,7 +10,7 @@ function loadTransmissionsFile() {
   // load transmissions file   
   var transmissionsFile = document.querySelector('div.transmissions input[type=file]').files[0];   
   // call buildGraph on load
-  transmissionsReader.addEventListener("load", buildGraph, false);
+  // transmissionsReader.addEventListener("load", test, false);
   if (transmissionsFile) {
     transmissionsReader.readAsText(transmissionsFile);
   }      
@@ -21,14 +21,16 @@ function loadTransmittersFile() {
   // load transmitters file
   var transmittersFile = document.querySelector('div.transmitters input[type=file]').files[0];   
   // call buildTimeline on load
-  transmittersReader.addEventListener("load", buildTimeline, false);
+  // transmittersReader.addEventListener("load", buildTimeline, false);
   if (transmittersFile) {
     transmittersReader.readAsText(transmittersFile);
   }      
 }
 
 
+
 function buildTimeline(stepsize) {
+  /** Build a timeline subgraph based on stepsize and data. */
   // get data from transmitters table
   var dataTransmitters = d3.csvParse(transmittersReader.result);
   // get min and max of death dates
@@ -37,29 +39,7 @@ function buildTimeline(stepsize) {
   // init timeline subgraph
   var timeline = [' subgraph {'];
   timeline.push( ' node [shape=none]');
-  // append new nodes to timeline according to stepsize
-  for (var i = timelineMin; i < timelineMax;) {
-      timeline.push(' ' + i.toString()  + '->' + (i+stepsize).toString() + ' [penwidth = 5, arrowhead = None]');
-      i = i+stepsize
-  }
-  // complete timeline subgraph
-  timeline.push('}');
-
-  return timeline;
-
-}
-
-
-function buildTimelineNew(stepsize) {
-  // get data from transmitters table
-  var dataTransmitters = d3.csvParse(transmittersReader.result);
-  // get min and max of death dates
-  var timelineMin = d3.min(dataTransmitters, function(d) { return +d.dAH; })
-  var timelineMax = d3.max(dataTransmitters, function(d) { return +d.dAH; })
-  // init timeline subgraph
-  var timeline = [' subgraph {'];
-  timeline.push( ' node [shape=none]');
-
+  // init timeline as empty list
   var timelineList = [];
   // append new nodes to timeline according to stepsize
   for (var i = timelineMin; i < timelineMax;) {
@@ -67,10 +47,6 @@ function buildTimelineNew(stepsize) {
       timelineList.push(i); // also have a list of timeline values
       i = i+stepsize;
   }
-  timelineList.push(85);
-  // ranking constraints
-  // timeline.push(' rank="same"  85 G');
-
   // complete timeline subgraph
   timeline.push('}');
 
@@ -78,7 +54,8 @@ function buildTimelineNew(stepsize) {
 
 }
 
-function buildGraphNew(timeline, constraints) {
+function buildGraph(timeline, constraints) {
+  /** Based one timeline, constraints and data, build graph as list of dot commands. */
   // get data from loaded files
   var dataTransmitters = d3.csvParse(transmittersReader.result);
   var dataTransmissions = d3.csvParse(transmissionsReader.result);
@@ -94,12 +71,10 @@ function buildGraphNew(timeline, constraints) {
   dot = dot.concat(constraints);
   // add connections
   dataTransmissions.forEach((item,i) =>
-      dot.push(' ' +'"'+ item.From +'"'+ ' -> ' + '"'+item.To+'"')
+      dot.push(' ' +'"'+ item.From +'"'+ ' -> ' + '"'+item.To+'"') // hyphens are necessary
       );
-  // and thats it
+  // and complete it
   dot.push('}');
-
-  // console.log(dot);
 
   return [dot];
 
@@ -107,179 +82,61 @@ function buildGraphNew(timeline, constraints) {
 
 
 
-function findClosestDAH(dAH, transmitter, year, stepsize) {
-  // var dataTransmitters = d3.csvParse(transmittersReader.result);
-  // console.log(year);
-  // upper = year+stepsize;
-  // console.log(upper);
-  // if (dAH > year && dAH < (year+stepsize)) {
-  if (year <= dAH && dAH < (year+stepsize)) {
-    // console.log(dAH);
-    return '"' + transmitter + '"';
+function isWithinRange(dAH, transmitter, year, stepsize) {
+  /** Return transmitter if its death date lies in the range given by year and stepsize.*/
+  if (year <= dAH && dAH < (year+stepsize)) { // check if within range
+    return '"' + transmitter + '"'; // and return formated transmitter string if so
   }
 }
 
 
 
 function matchToTimeline() {
+  /** Get constraints to place transmitters in timeline according to their death data (dAH) */
   var stepsize = 15;
-  var timeline = buildTimelineNew(15)[1];
-  var dataTransmitters = d3.csvParse(transmittersReader.result);
-  var constraints = [];
-
-  
+  var timeline = buildTimeline(15)[1]; // get timeline as list
+  var dataTransmitters = d3.csvParse(transmittersReader.result); // get loaded transmitters file
+  var constraints = []; // init the constraints we want to return as empty list
+  // iterate over years of our timeline
   for (var i = 0; i < timeline.length; i++) {
-    // findClosestDAH(timeline[i], stepsize);
-    // console.log('year:');
-    // console.log(timeline[i]);
-    // console.log('_______');
+    // list to place in the nodes that will correspond to the current timeline year
     let closestList = [];
+    // init rank constraint string
     let constraintString = '{ rank=same ' + timeline[i];
-    // console.log()
+    // iterate over all of our transmitters and get them if they match the current timeline year
     for (var j = 0; j < dataTransmitters.length; j++) {
-      closest = findClosestDAH(dataTransmitters[j].dAH, dataTransmitters[j].Transmitters, timeline[i],stepsize);
+      closest = isWithinRange(dataTransmitters[j].dAH, dataTransmitters[j].Transmitters, timeline[i],stepsize);
       if (closest){
         constraintString += ' '+closest;
       }
     }
-    constraintString += ' }';
-    // console.log(constraintString);
+    // complete the rank constraint
+    constraintString += ' }'; 
+    // and append to our list of constraints
     constraints.push(constraintString);
   }
+
   return constraints
-  // console.log(constraints);
-  // console.log(dataTransmitters);
 }
 
 
 
-
-
-
-function buildConstraints() {
-  var constraints = [];
-  constraints.push(' {rank=same  10 A}');
-  constraints.push(' {rank=same  35 B C}');
-  constraints.push(' {rank=same  60 D}');
-  constraints.push(' {rank=same  85 F G E H}');
-
-  // constraints.push(' ');
-
-  return constraints;
-}
-
-
-function renderGraphNew() {
-  var timeline = buildTimelineNew(15)[0];
-  // var constraints = buildConstraints();
+function renderGraph() {
+  /** Build a complete graph with timeline and constraints and render it. */
+  // get timeline as list of strings
+  var timeline = buildTimeline(15)[0];
+  // get constraints as list of strings
   var constraints = matchToTimeline()
-  var dot = buildGraphNew(timeline, constraints);
-
+  // get main graph as list of constraints
+  var dot = buildGraph(timeline, constraints);
+  // TODO make adaptive
   graphviz.width(1000);
   graphviz.height(1500);
   // turn list of dot commands into string
   var dotLines = dot[0 % dot.length];
   var dotString = dotLines.join('');
-  // render graph in canvas
-
-  console.log(dotString);
-
-  graphviz
-      .dot(dotString)
-      .render();
-}
-
-
-
-function buildGraph(timeline) {
-  // get data
-  var dataTransmissions = d3.csvParse(transmissionsReader.result);
-  // init graph
-  var dot = ['digraph  {'];
-  // append nodes and edges to graph based on links specified in data
-  dataTransmissions.forEach((item,i) =>
-      dot.push(' ' + item.From + ' -> ' + item.To)
-      );
-  // append timeline to graph
-  dot = dot.concat(timeline);
-  // and complete it
-  dot.push('}');
-
-  return [dot];
-}
-
-
-function renderGraph() {
-  // create a graph to draw
-  var timeline = buildTimeline(15);
-  var graph = buildGraph(timeline);
-  // set dimensions
-  graphviz.width(500);
-  graphviz.height(1100);
-  // turn list of dot commands into string
-  var dotLines = graph[0 % graph.length];
-  var dotString = dotLines.join('');
-  // render graph in canvas
-  graphviz
-      .dot(dotString)
-      .render();
-}
-
-
-
-function ttest() {
-  var dot = ['digraph  {'];
-  // edges
-  dot.push(' A [ label="A" shape="circle" ]');
-  dot.push(' B [ label="B" shape="circle" ]');
-  dot.push(' C [ label="C" shape="circle" ]');
-  dot.push(' D [ label="D" shape="circle" ]');
-  dot.push(' A -> B');
-  dot.push(' A -> C');
-  dot.push(' C -> D');
-
-  dot.push(' subgraph subs {');
-  dot.push('1');
-  dot.push('2');
-  dot.push('3');
-
-  dot.push(' 1->2->3');
-  // dot.push(' 2->3');
-  dot.push(' {')
-  dot.push('rank=same 1 A');
-  dot.push('}');
-  dot.push(' {')
-  dot.push('rank=same 2 C');
-  dot.push('}');
-  dot.push(' {')
-  dot.push('rank=same 3 B D');
-  dot.push('}');
   
-
-  // nodes
-
-  dot.push('}');
-  dot.push('}');
-
-
-  // dot.push(' rank="min" 1');
-  // dot.push(' rank="same" 1 A');
-  // dot.push(' rank="same" 2 C');
-  // dot.push(' rank="same" 3 B D');
-  // dot.push(' rank="max" 3');
-  // dot.push(' rankdir="TB"');
-
-
-
-
-  graphviz.width(500);
-  graphviz.height(1100);
-  dotString = '';
-  dot = [dot];
-  // turn list of dot commands into string
-  var dotLines = dot[0 % dot.length];
-  var dotString = dotLines.join(' ');
-  // console.log(dot);
+  // console.log(dotString);
 
   // render graph in canvas
   graphviz
@@ -293,10 +150,7 @@ function ttest() {
 
 
 
-
-
-
-// placeholder function for buttons
 function test(){
+  /** placeholder function for buttons... */
     console.log('working...');
 }
