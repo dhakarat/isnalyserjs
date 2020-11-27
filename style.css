@@ -34,9 +34,24 @@ input[type="file"] {
   border-radius: 5px;
 
 }
-.sidenavLeft input[type=submit], input[type=file], input[type=text], input[type=number] {
-  /*background-color: #D0E1D4;*/
+.sidenavLeft input[type=submit], input[type=file], input[type=text] {
+  /* Input field on the left*/
   width: 200px;
+  border: none;
+  font-family: "font-family", Quicksand, sans-serif;
+  font-size: 20px;
+  padding: 5px 5px;
+  text-decoration: none;
+  margin: 4px 2px;
+  border-radius: 10px;
+  border: 2px solid;/*cursor: pointer;*/
+  border-color: #C7BD94;
+  color: #664147;
+  background-color: #E9E6D8;
+}
+
+.sidenavLeft input[type=number] {
+  /* Step size field*/
   border: none;
   /*color: white;*/
   font-family: "font-family", Quicksand, sans-serif;
@@ -47,17 +62,31 @@ input[type="file"] {
   border-radius: 10px;
   border: 2px solid;  /*cursor: pointer;*/
   /*textarea:#000000;*/
-  border-color: #C7BD94;
+    border-color: #D9D2B6;
   color: #664147;
-  background-color: #E9E6D8;
-
-
+   background-color: #F8F7F2;
 }
 
-.sidenavLeft input[type=submit]:hover, input[type=file]:hover, input[type=text]:hover, input[type=number]:hover{
+.sidenavLeft label {
+  /* Step size label */
+  padding: 5px ;
+  font-family: "font-family", Quicksand, sans-serif;
+  font-size: 20px;
+  color: #664147;
+}
+
+
+/* Styles for on hover */
+.sidenavLeft input[type=submit]:hover, input[type=file]:hover, input[type=text]:hover{
   background-color: #D0E1D4;
-
 }
+.sidenavLeft label:hover{
+  background-color: #D0E1D4;
+}
+.sidenavLeft input[type=number]:hover{
+  background-color: #D0E1D4;
+}
+
 .sidenavLeft p {
   padding: 6px ;
   font-family: "font-family", Quicksand, sans-serif;
