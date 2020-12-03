@@ -114,3 +114,4 @@ Thumbs.db
 !.gitignore
 !.editorconfig
 !.phpcs.xml.dist
+sample.html

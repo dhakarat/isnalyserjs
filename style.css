@@ -184,11 +184,23 @@ input[type="file"] {
 
 }
 
-/* Style page content */
-/*.main {
-  margin-left: 60px;  Same as the width of the sidebar 
-  padding: 0px 10px;
-}*/
+
+
+div.tooltip {   
+    position: absolute;
+    text-align: left;         
+    width: 100px;                    
+    height: 50px;                   
+    padding: 3px;               
+    /*font: 12px sans-serif;*/
+    font-family: "font-family", Quicksand, sans-serif;
+    color: #664147;
+    background: #E4BE9E; 
+    border: 0px;        
+    border-radius: 8px;         
+    pointer-events: none;           
+}
+
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
