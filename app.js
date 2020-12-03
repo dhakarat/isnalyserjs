@@ -7,10 +7,10 @@ var stepSize = 15;
 var graphviz = d3.select("#graph").graphviz();
 
 
-
+// init tooltip object and append to div 
 var tooltip = d3.select("#graph").append("div")
     .attr("class", "tooltip")
-    .style("opacity", 0);
+    .style("opacity", 0); // init invisibly
 
 
 
@@ -141,62 +141,56 @@ function matchToTimeline() {
 
 
 
-function displayTooltip() {
-
-    nodes = d3.selectAll('.node'); //,.edge
-    // console.log(nodes);
-    nodes
-        .on("mouseover", function (d) {
-            console.log(this);
-            // console.log(g);
-
-            // tooltip.
-              // .text(function(d, i) { return data[i].label; });
-            tooltip.html(d)
-
-            .text(this.id)
-            .style("opacity", 0.9)
-            .style("left", (d3.event.pageX +15) + "px") 
-            .style("top", (d3.event.pageY - 10) + "px"); 
-    
-    nodes
-      .on("mouseout", function() {
-        tooltip.style("opacity", 0);
-      });    
-        });
+function displayNodeTooltip() {
+  /** When mouse hovers over a node, display a tooltip with additional information. */
+  // select all d3 nodes in the canvas
+  nodes = d3.selectAll('.node'); //,.edge 
+  // when mouse is on a node
+  nodes
+    .on("mouseover", function (d) {
+      // console.log(this);
+      tooltip.html(d)
+        .text(d.key)
+        .style("opacity", 0.9) // increase opacity of element
+        // place element where the event happend
+        .style("left", (d3.event.pageX +15) + "px") 
+        .style("top", (d3.event.pageY - 10) + "px"); 
+  // When mouse is not one a node
+  nodes
+    .on("mouseout", function() {
+      tooltip.style("opacity", 0); // reduce opacity of element
+    });    
+  });
 }
 
 
 
-
 function renderGraph() {
-  /** Build a complete graph with timeline and constraints and render it. */
-  // get timeline as list of strings
-  var timeline = buildTimeline(stepSize)[0];
-  // get constraints as list of strings
-  var constraints = matchToTimeline()
-  // get main graph as list of constraints
-  var dot = buildGraph(timeline, constraints);
-  // TODO make adaptive
-  graphviz.width(1000);
-  graphviz.height(1500);
-  // turn list of dot commands into string
-  var dotLines = dot[0 % dot.length];
-  var dotString = dotLines.join('');
-  // var dotString = 'graph { node [style="filled" tooltip=" "]"Long Name" [label="A"]  B  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed, color=grey]}'
+  // /** Build a complete graph with timeline and constraints and render it. */
+  // // get timeline as list of strings
+  // var timeline = buildTimeline(stepSize)[0];
+  // // get constraints as list of strings
+  // var constraints = matchToTimeline()
+  // // get main graph as list of constraints
+  // var dot = buildGraph(timeline, constraints);
+  // // TODO make adaptive
+  // graphviz.width(1000);
+  // graphviz.height(1500);
+  // // turn list of dot commands into string
+  // var dotLines = dot[0 % dot.length];
+  // var dotString = dotLines.join('');
+  var dotString = 'graph { node [style="filled" tooltip=" "]"Long Name" [label="A"]  B  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed, color=grey]}'
 
-  // console.log(dotString);
+  console.log(dotString);
 
   // render graph in canvas
   graphviz
       .dot(dotString)
       .render()
-      .on("end", displayTooltip);
+      .on("end", displayNodeTooltip) // display tooltips interactively, once graph is rendered
       ;
 
 }
-
-
 
 
 
