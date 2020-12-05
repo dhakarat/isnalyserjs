@@ -96,11 +96,11 @@ function buildGraph(timeline, constraints) {
   var dataTransmitters = d3.csvParse(transmittersReader.result);
   var dataTransmissions = d3.csvParse(transmissionsReader.result);
   // init dot source
-  var dot = ['strict digraph  { '];
+  var dot = ['strict digraph  { node [style="filled" tooltip=" "]'];
   // dot.push(' node [style="filled"]');
   // add nodes
   dataTransmitters.forEach((item,i) =>
-      dot.push(' ' + '"'+item.Transmitters+'"')
+      dot.push(' ' + '"'+item.Transmitters+'"' + '[label=' + '"'+ abbreviateName(item.Transmitters) +'"' + ']')
       );
   // add timeline
   dot = dot.concat(timeline);
