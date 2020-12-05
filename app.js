@@ -141,20 +141,20 @@ function matchToTimeline() {
 
 
 
-
 function getDAH(data, key) {
+  /** Get death date of a transmitter. */
   for (var i = 0; i < data.length; i++) {
-    // console.log(data[i]['dAH']);
     if (data[i]['Transmitters'] == key) {
       return data[i]['dAH'];
     }
   }
 }
 
+
+
 function getOrigin(data, key) {
+  /** Get origin of a transmitter. */
   for (var i = 0; i < data.length; i++) {
-    // console.log(data[i]['dAH']);
-    // if dataTransmitters[i]['']
     if (data[i]['Transmitters'] == key) {
       if (data[i]['Origin'] !== undefined){
         return data[i]['Origin'];
@@ -168,17 +168,12 @@ function getOrigin(data, key) {
 
 
 
-
-
 function displayNodeTooltip() {
   /** When mouse hovers over a node, display a tooltip with additional information. */
   // select all d3 nodes in the canvas
   nodes = d3.selectAll('.node'); //,.edge 
-
   // load transmitters data
   var dataTransmitters = d3.csvParse(transmittersReader.result);
-
-
   // when mouse is on a node
   nodes
     .on("mouseover", function (d) {
@@ -191,7 +186,7 @@ function displayNodeTooltip() {
         // increase opacity of element
         .style("opacity", 0.9)
         // place element where the event happend
-        .style("left", (d3.event.pageX +15) + "px") 
+        .style("left", (d3.event.pageX + 15) + "px") 
         .style("top", (d3.event.pageY - 10) + "px"); 
   // When mouse is not one a node
   nodes
