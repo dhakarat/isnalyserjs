@@ -50,13 +50,15 @@ function getStepSize() {
 
 
 function abbreviateName(name) {
-  if (name.length > 7) {
-    console.log('Wow, this is a long name');
-    var lastName = name.split(' ').slice(-1).join(' ');
-    var shortName = name.substring(0,5) + '... ' + lastName;
+  /** 
+  If name is longer that 7 characters and consists
+  of multiple names, return a ...-abbreviated version.
+  */
+  if (name.length > 7 && name.split(' ').length > 1) {
+    var lastName = name.split(' ').slice(-1).join(' '); // get last name (last slice)
+    var shortName = name.substring(0,5) + '... ' + lastName; // concat names to form abbreviated version
 
     return shortName;
-
   }
   else{
     return name;
@@ -96,11 +98,11 @@ function buildGraph(timeline, constraints) {
   var dataTransmitters = d3.csvParse(transmittersReader.result);
   var dataTransmissions = d3.csvParse(transmissionsReader.result);
   // init dot source
-  var dot = ['strict digraph  { node [style="filled" tooltip=" "]'];
+  var dot = ['strict digraph  { node [style="filled" fillcolor = "white"  shape = "none" tooltip=" "]'];
   // dot.push(' node [style="filled"]');
   // add nodes
   dataTransmitters.forEach((item,i) =>
-      dot.push(' ' + '"'+item.Transmitters+'"' + '[label=' + '"'+ abbreviateName(item.Transmitters) +'"' + ']')
+      dot.push(' ' + '"'+item.Transmitters+'"' + '[label=' + '"'+ abbreviateName(item.Transmitters) +'"' + ']') //+ '[fillcolor=' + "red" + ']')
       );
   // add timeline
   dot = dot.concat(timeline);
@@ -108,7 +110,7 @@ function buildGraph(timeline, constraints) {
   dot = dot.concat(constraints);
   // add connections
   dataTransmissions.forEach((item,i) =>
-      dot.push(' ' +'"'+ item.From +'"'+ ' -> ' + '"'+item.To+'"') // hyphens are necessary
+      dot.push(' ' +'"'+ item.From +'"'+ ' -> ' + '"'+ item.To +'"') // hyphens are necessary
       );
   // and complete it
   dot.push('}');
@@ -200,7 +202,7 @@ function displayNodeTooltip() {
           + "Year of death: " + getDAH(dataTransmitters, d.key) + "\n"
           + "City of origin: " + getOrigin(dataTransmitters, d.key)) 
         // increase opacity of element
-        .style("opacity", 0.9)
+        .style("opacity", 0.99) // 0.9 looks nice
         // place element where the event happend
         .style("left", (d3.event.pageX + 15) + "px") 
         .style("top", (d3.event.pageY - 10) + "px"); 
@@ -269,6 +271,6 @@ function ttest() {
 function test(){
   /** placeholder function for buttons... */
     // console.log('working...');
-    abbreviateName('Ḥarmalah b. Yaḥyā al-Tugībī');
-
+    var shortName = abbreviateName('Ḥarmalah b. Yaḥyā al-Tugībī');
+    console.log(shortName);
 }
