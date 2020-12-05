@@ -141,14 +141,35 @@ function matchToTimeline() {
 
 
 
+
+function getDAH(data, key) {
+  for (var i = 0; i < data.length; i++) {
+    // console.log(data[i]['dAH']);
+    if (data[i]['Transmitters'] == key) {
+      console.log(data[i]['dAH']);
+    }
+  }
+}
+
+
+
+
 function displayNodeTooltip() {
   /** When mouse hovers over a node, display a tooltip with additional information. */
   // select all d3 nodes in the canvas
   nodes = d3.selectAll('.node'); //,.edge 
+  
+
+
+
+  var dataTransmitters = d3.csvParse(transmittersReader.result);
+  getDAH(dataTransmitters, 'B');
+
+
+
   // when mouse is on a node
   nodes
     .on("mouseover", function (d) {
-      // console.log(this);
       tooltip.html(d)
         .text(d.key)
         .style("opacity", 0.9) // increase opacity of element
@@ -166,20 +187,20 @@ function displayNodeTooltip() {
 
 
 function renderGraph() {
-  // /** Build a complete graph with timeline and constraints and render it. */
-  // // get timeline as list of strings
-  // var timeline = buildTimeline(stepSize)[0];
-  // // get constraints as list of strings
-  // var constraints = matchToTimeline()
-  // // get main graph as list of constraints
-  // var dot = buildGraph(timeline, constraints);
-  // // TODO make adaptive
-  // graphviz.width(1000);
-  // graphviz.height(1500);
-  // // turn list of dot commands into string
-  // var dotLines = dot[0 % dot.length];
-  // var dotString = dotLines.join('');
-  var dotString = 'graph { node [style="filled" tooltip=" "]"Long Name" [label="A"]  B  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed, color=grey]}'
+  /** Build a complete graph with timeline and constraints and render it. */
+  // get timeline as list of strings
+  var timeline = buildTimeline(stepSize)[0];
+  // get constraints as list of strings
+  var constraints = matchToTimeline()
+  // get main graph as list of constraints
+  var dot = buildGraph(timeline, constraints);
+  // TODO make adaptive
+  graphviz.width(1000);
+  graphviz.height(1500);
+  // turn list of dot commands into string
+  var dotLines = dot[0 % dot.length];
+  var dotString = dotLines.join('');
+  // var dotString = 'graph { node [style="filled" tooltip=" "]"Long Name" [label="A"]  B  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed, color=grey]}'
 
   console.log(dotString);
 
