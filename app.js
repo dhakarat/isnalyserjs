@@ -7,6 +7,13 @@ var stepSize = 15;
 var graphviz = d3.select("#graph").graphviz();
 
 
+// init tooltip object and append to div 
+var tooltip = d3.select("#graph").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0); // init invisibly
+
+
+
 function loadTransmissionsFile() { 
   /** Get loaded transmissions file and store in reader variable. */
   // load transmissions file   
@@ -73,7 +80,8 @@ function buildGraph(timeline, constraints) {
   var dataTransmitters = d3.csvParse(transmittersReader.result);
   var dataTransmissions = d3.csvParse(transmissionsReader.result);
   // init dot source
-  var dot = ['digraph  {'];
+  var dot = ['strict digraph  { '];
+  // dot.push(' node [style="filled"]');
   // add nodes
   dataTransmitters.forEach((item,i) =>
       dot.push(' ' + '"'+item.Transmitters+'"')
@@ -133,6 +141,63 @@ function matchToTimeline() {
 
 
 
+function getDAH(data, key) {
+  /** Get death date of a transmitter. */
+  for (var i = 0; i < data.length; i++) {
+    if (data[i]['Transmitters'] == key) {
+      return data[i]['dAH'];
+    }
+  }
+}
+
+
+
+function getOrigin(data, key) {
+  /** Get origin of a transmitter. */
+  for (var i = 0; i < data.length; i++) {
+    if (data[i]['Transmitters'] == key) {
+      if (data[i]['Origin'] !== undefined){
+        return data[i]['Origin'];
+      }
+      else{
+        return " ";
+      }
+    }
+  }
+}
+
+
+
+function displayNodeTooltip() {
+  /** When mouse hovers over a node, display a tooltip with additional information. */
+  // select all d3 nodes in the canvas
+  nodes = d3.selectAll('.node'); //,.edge 
+  // load transmitters data
+  var dataTransmitters = d3.csvParse(transmittersReader.result);
+  // when mouse is on a node
+  nodes
+    .on("mouseover", function (d) {
+      tooltip.html(d)
+        // display summarizing data in tooltip
+        .text(
+          d.key + "\n"
+          + "Year of death: " + getDAH(dataTransmitters, d.key) + "\n"
+          + "City of origin: " + getOrigin(dataTransmitters, d.key)) 
+        // increase opacity of element
+        .style("opacity", 0.9)
+        // place element where the event happend
+        .style("left", (d3.event.pageX + 15) + "px") 
+        .style("top", (d3.event.pageY - 10) + "px"); 
+  // When mouse is not one a node
+  nodes
+    .on("mouseout", function() {
+      tooltip.style("opacity", 0); // reduce opacity of element
+    });    
+  });
+}
+
+
+
 function renderGraph() {
   /** Build a complete graph with timeline and constraints and render it. */
   // get timeline as list of strings
@@ -147,7 +212,30 @@ function renderGraph() {
   // turn list of dot commands into string
   var dotLines = dot[0 % dot.length];
   var dotString = dotLines.join('');
-  
+  // var dotString = 'graph { node [style="filled" tooltip=" "]"Long Name" [label="A"]  B  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed, color=grey]}'
+
+  console.log(dotString);
+
+  // render graph in canvas
+  graphviz
+      .dot(dotString)
+      .render()
+      .on("end", displayNodeTooltip) // display tooltips interactively, once graph is rendered
+      ;
+
+}
+
+
+
+function ttest() {
+  // var dot = buildGraph(timeline, constraints);
+  // TODO make adaptive
+  graphviz.width(1000);
+  graphviz.height(1500);
+  // turn list of dot commands into string
+  // var dotLines = dot[0 % dot.length];
+  // var dotString = dotLines.join('');
+  var dotString = 'graph {"Long Name" [label="A"]  B[tooltip="origin\ndAH\nbio"]  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed, color=grey]}'
   // console.log(dotString);
 
   // render graph in canvas
