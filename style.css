@@ -7,10 +7,10 @@ input[type="file"] {
 
 /*Overlay for file upload buttons. */
 .custom-file-upload {
-  font-family: "font-family", Quicksand, sans-serif;
+  font-family: "font-family", Times New Roman, serif;
   color: #664147;
   border-radius: 10px;
-  border: 2px solid;  /*cursor: pointer;*/
+  border: 1px solid;  /*cursor: pointer;*/
   border-color: #C7BD94;
   display: inline-block;
   padding: 5px 5px;
@@ -23,7 +23,7 @@ input[type="file"] {
 }
 /* Sidebar */
 .sidenavLeft {
-  width: 250px; /* Set the width of the sidebar */
+  width: 210px; /* Set the width of the sidebar */
   /*position: fixed;  Fixed Sidebar (stay in place on scroll) */
   /*z-index: 1;  Stay on top */
   /*top: 0;  Stay at the top */
@@ -39,13 +39,13 @@ input[type="file"] {
 .sidenavLeft input[type=submit], input[type=file], input[type=text] {
   width: 200px;
   border: none;
-  font-family: "font-family", Quicksand, sans-serif;
+  font-family: "font-family", Times New Roman, serif;
   font-size: 20px;
   padding: 5px 5px;
   text-decoration: none;
   margin: 4px 2px;
   border-radius: 10px;
-  border: 2px solid;/*cursor: pointer;*/
+  border: 1px solid;/*cursor: pointer;*/
   border-color: #C7BD94;
   color: #664147;
   background-color: #E9E6D8;
@@ -54,13 +54,13 @@ input[type="file"] {
 /* Step size field*/
 .sidenavLeft input[type=number] {
   border: none;
-  font-family: "font-family", Quicksand, sans-serif;
+  font-family: "font-family", Times New Roman, serif;
   font-size: 20px;
   padding: 5px 5px;
   text-decoration: none;
   margin: 4px 2px;
   border-radius: 10px;
-  border: 2px solid;  /*cursor: pointer;*/
+  border: 1px solid;  /*cursor: pointer;*/
   border-color: #D9D2B6;
   color: #664147;
   background-color: #F8F7F2;
@@ -69,7 +69,7 @@ input[type="file"] {
 /* Step size label */
 .sidenavLeft label {
   padding: 5px ;
-  font-family: "font-family", Quicksand, sans-serif;
+  font-family: "font-family", Times New Roman, serif;
   font-size: 20px;
   color: #664147;
 }
@@ -86,7 +86,7 @@ input[type="file"] {
 
 .sidenavLeft p {
   padding: 6px ;
-  font-family: "font-family", Quicksand, sans-serif;
+  font-family: "font-family", Times New Roman, serif;
   font-size: 20px;
   color: #664147;
   display: block;
@@ -110,7 +110,7 @@ input[type="file"] {
 
 .sidenavRight a {
   padding: 6px 8px 6px 16px;
-  font-family: "font-family", Quicksand, sans-serif;
+  font-family: "font-family", Times New Roman, serif;
   text-decoration: none;
   font-size: 20px;
   color: #664147;
@@ -119,25 +119,25 @@ input[type="file"] {
 
 .sidenavRight p {
   padding: 6px ;
-  font-family: "font-family", Quicksand, sans-serif;
+  font-family: "font-family", Times New Roman, serif;
   font-size: 20px;
   color: #664147;
   display: block;
 }
 .sidenavRight hr {
-  border: 2px dotted;
+  border: 1px dotted;
   border-color: #664147;
 }
 
 .sidenavRight input[type=submit], input[type=file]{
   border: none;
-  font-family: "font-family", Quicksand, sans-serif;
+  font-family: "font-family", Times New Roman, serif;
   font-size: 20px;
   padding: 5px 5px;
   text-decoration: none;
   margin: 4px 2px;
   border-radius: 10px;
-  border: 2px solid;  /*cursor: pointer;*/
+  border: 1px solid;  /*cursor: pointer;*/
   border-color: #C7BD94;
   color: #664147;
   background-color: #E9E6D8;
@@ -145,13 +145,13 @@ input[type="file"] {
 }
 .sidenavRight input[type=text]{
   border: none;
-  font-family: "font-family", Quicksand, sans-serif;
+  font-family: "font-family", Times New Roman, serif;
   font-size: 20px;
   padding: 5px 5px;
   text-decoration: none;
   margin: 4px 2px;
   border-radius: 10px;
-  border: 2px solid;  /*cursor: pointer;*/
+  border: 1px solid;  /*cursor: pointer;*/
   border-color: #D9D2B6;
   color: #664147;
   background-color: #F8F7F2;
@@ -163,20 +163,31 @@ input[type="file"] {
 }
 
 /* Style on-hover tooltips*/
-div.tooltip {   
+/*div.tooltip {   
     position: absolute;
     text-align: left;         
     width: 300px;                    
     height: 70px;                   
     padding: 5px;               
-    font-family: "font-family", Quicksand, sans-serif;
+    font-family: "font-family", Times New Roman, serif;
     color: #664147;
     background: #E4BE9E; 
     border: 0px;        
     border-radius: 8px;         
     pointer-events: none;           
 }
-
+*/
+div.tooltip {   
+    position: absolute;
+    text-align: left;         
+    padding: 5px;               
+    font-family: "Times New Roman", Times, serif;
+    color: #664147;
+    background: white; 
+    border: 1px solid #777777;
+    border-radius: 6px;         
+    pointer-events: none;           
+}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
