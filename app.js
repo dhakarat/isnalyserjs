@@ -80,7 +80,7 @@ function buildGraph(timeline, constraints) {
   var dataTransmitters = d3.csvParse(transmittersReader.result);
   var dataTransmissions = d3.csvParse(transmissionsReader.result);
   // init dot source
-  var dot = ['digraph  { '];
+  var dot = ['strict digraph  { '];
   // dot.push(' node [style="filled"]');
   // add nodes
   dataTransmitters.forEach((item,i) =>
@@ -146,10 +146,26 @@ function getDAH(data, key) {
   for (var i = 0; i < data.length; i++) {
     // console.log(data[i]['dAH']);
     if (data[i]['Transmitters'] == key) {
-      console.log(data[i]['dAH']);
+      return data[i]['dAH'];
     }
   }
 }
+
+function getOrigin(data, key) {
+  for (var i = 0; i < data.length; i++) {
+    // console.log(data[i]['dAH']);
+    // if dataTransmitters[i]['']
+    if (data[i]['Transmitters'] == key) {
+      if (data[i]['Origin'] !== undefined){
+        return data[i]['Origin'];
+      }
+      else{
+        return " ";
+      }
+    }
+  }
+}
+
 
 
 
@@ -158,21 +174,22 @@ function displayNodeTooltip() {
   /** When mouse hovers over a node, display a tooltip with additional information. */
   // select all d3 nodes in the canvas
   nodes = d3.selectAll('.node'); //,.edge 
-  
 
-
-
+  // load transmitters data
   var dataTransmitters = d3.csvParse(transmittersReader.result);
-  getDAH(dataTransmitters, 'B');
-
 
 
   // when mouse is on a node
   nodes
     .on("mouseover", function (d) {
       tooltip.html(d)
-        .text(d.key)
-        .style("opacity", 0.9) // increase opacity of element
+        // display summarizing data in tooltip
+        .text(
+          d.key + "\n"
+          + "Year of death: " + getDAH(dataTransmitters, d.key) + "\n"
+          + "City of origin: " + getOrigin(dataTransmitters, d.key)) 
+        // increase opacity of element
+        .style("opacity", 0.9)
         // place element where the event happend
         .style("left", (d3.event.pageX +15) + "px") 
         .style("top", (d3.event.pageY - 10) + "px"); 
