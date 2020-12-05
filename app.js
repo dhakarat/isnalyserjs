@@ -49,6 +49,22 @@ function getStepSize() {
 
 
 
+function abbreviateName(name) {
+  if (name.length > 7) {
+    console.log('Wow, this is a long name');
+    var lastName = name.split(' ').slice(-1).join(' ');
+    var shortName = name.substring(0,5) + '... ' + lastName;
+
+    return shortName;
+
+  }
+  else{
+    return name;
+  }
+}
+
+
+
 function buildTimeline(stepsize) {
   /** Build a timeline subgraph based on stepsize and data. */
   // get data from transmitters table
@@ -252,5 +268,7 @@ function ttest() {
 
 function test(){
   /** placeholder function for buttons... */
-    console.log('working...');
+    // console.log('working...');
+    abbreviateName('Ḥarmalah b. Yaḥyā al-Tugībī');
+
 }
