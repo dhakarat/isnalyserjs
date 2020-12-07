@@ -13,8 +13,8 @@ var tooltip = d3.select("#graph").append("div")
     .style("opacity", 0); // init invisibly
 
 
-
-// var transmissionTypeLookup = {0:'solid', 1:'dashed', 2:'dotted', 3:'bold'};
+// lookup table for edge types
+var transmissionTypeLookup = {0:'solid', 1:'dashed', 2:'dotted', 3:'bold'};
 
 
 
@@ -114,8 +114,7 @@ function buildGraph(timeline, constraints) {
   dot = dot.concat(constraints);
   // add connections
   dataTransmissions.forEach((item,i) =>
-      dot.push(' ' +'"'+ item.From +'"'+ ' -> ' + '"'+ item.To +'"' + ' [label=' +'"'+ getTextID(dataTransmissions, item.From, item.To)  +'"' + ']') // hyphens are necessary
-      // dot.push(' ' +'"'+ item.From +'"'+ ' -> ' + '"'+ item.To +'"' + ' [label=' +'"'+ getTextID(dataTransmissions, item.From, item.To)  +'"'+ ' style='+ transmissionTypeLookup[item.TransmissionType]  +']') // hyphens are necessary
+      dot.push(' ' +'"'+ item.From +'"'+ ' -> ' + '"'+ item.To +'"' + ' [label=' +'"'+ getTextID(dataTransmissions, item.From, item.To)  +'"'+ ' style='+ transmissionTypeLookup[item.TransmissionType]  +']') // hyphens are necessary
 
       );
   // and complete it

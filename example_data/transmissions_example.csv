@@ -1,8 +1,8 @@
-From,To
-A,D
-B,E
-B,G
-C,G
-C,H
-D,F
-D,G
+From,To,FileName,TransmissionType
+A,D,M1,0
+B,E,M2,1
+B,G,M3,2
+C,G,M4,3
+C,H,M5,0
+D,F,M6,1
+D,G,M7,2
