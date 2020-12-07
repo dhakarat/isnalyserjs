@@ -99,6 +99,9 @@ function buildGraph(timeline, constraints) {
   var dataTransmissions = d3.csvParse(transmissionsReader.result);
   // init dot source
   var dot = ['strict digraph  { node [style="filled" fillcolor = "white"  shape = "none" tooltip=" "]'];
+  // var dot = ['strict digraph  { graph [concentrate="true"] node [style="filled" fillcolor = "white"  shape = "none" tooltip=" "]'];
+  // var dot = [' digraph  { node [style="filled" fillcolor = "white"  shape = "none" tooltip=" "]'];
+
   // dot.push(' node [style="filled"]');
   // add nodes
   dataTransmitters.forEach((item,i) =>
@@ -110,7 +113,7 @@ function buildGraph(timeline, constraints) {
   dot = dot.concat(constraints);
   // add connections
   dataTransmissions.forEach((item,i) =>
-      dot.push(' ' +'"'+ item.From +'"'+ ' -> ' + '"'+ item.To +'"') // hyphens are necessary
+      dot.push(' ' +'"'+ item.From +'"'+ ' -> ' + '"'+ item.To +'"' + ' [label=' +'"'+ getTextID(dataTransmissions, item.From, item.To)  +'"'+']') // hyphens are necessary
       );
   // and complete it
   dot.push('}');
@@ -183,6 +186,19 @@ function getOrigin(data, key) {
     }
   }
 }
+
+
+
+function getTextID(data, from, to) {
+  var ids = [];
+  for (var i = 0; i < data.length; i++) {
+    if (data[i]['From']==from && data[i]['To']==to) {
+      ids.push(data[i]['FileName']);
+    } 
+  }
+  return ids;
+}
+
 
 
 
