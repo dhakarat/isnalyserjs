@@ -5,6 +5,8 @@ input[type="file"] {
     display: none;
 }
 
+
+
 /*Overlay for file upload buttons. */
 .custom-file-upload {
   font-family: "font-family", Times New Roman, serif;
@@ -187,6 +189,12 @@ div.tooltip {
     border: 1px solid #777777;
     border-radius: 6px;         
     pointer-events: none;           
+}
+
+
+
+div.chain {
+    color: #664147;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */

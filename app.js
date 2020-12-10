@@ -13,6 +13,7 @@ var tooltip = d3.select("#graph").append("div")
     .style("opacity", 0); // init invisibly
 
 
+
 // lookup table for edge types
 var transmissionTypeLookup = {0:'solid', 1:'dashed', 2:'dotted', 3:'bold'};
 
@@ -86,7 +87,7 @@ function buildTimeline(stepsize) {
   var timelineList = [];
   // append new nodes to timeline according to stepsize
   for (var i = timelineMin; i < timelineMax;) {
-      timeline.push(' ' + i.toString()  + '->' + (i+stepsize).toString() + ' [penwidth = 3, arrowhead = None]');
+      timeline.push(' ' + i.toString()  + '->' + (i+stepsize).toString() + ' [penwidth = 3, arrowhead = None tooltip=" "]');
       timelineList.push(i); // also have a list of timeline values
       i = i+stepsize;
   }
@@ -114,7 +115,7 @@ function buildGraph(timeline, constraints) {
   dot = dot.concat(constraints);
   // add connections
   dataTransmissions.forEach((item,i) =>
-      dot.push(' ' +'"'+ item.From +'"'+ ' -> ' + '"'+ item.To +'"' + ' [label=' +'"'+ getTextID(dataTransmissions, item.From, item.To)  +'"'+ ' style='+ transmissionTypeLookup[item.TransmissionType]  +']') // hyphens are necessary
+      dot.push(' ' +'"'+ item.From +'"'+ ' -> ' + '"'+ item.To +'"' + ' [labeltooltip=" " label=' +'"'+ getTextID(dataTransmissions, item.From, item.To)  +'"'+ ' style='+ transmissionTypeLookup[item.TransmissionType]  +' ]') // hyphens are necessary
 
       );
   // and complete it
@@ -204,7 +205,6 @@ function getTextID(data, from, to) {
 
 
 
-
 function displayNodeTooltip() {
   /** When mouse hovers over a node, display a tooltip with additional information. */
   // select all d3 nodes in the canvas
@@ -235,6 +235,78 @@ function displayNodeTooltip() {
 
 
 
+function highlightEdgeByID(edgeID) {
+  /** Select an edge, given its ID. */
+  d3.select("g#" + edgeID).selectAll('path').attr("stroke", "#C10E1A");
+}
+
+
+
+function unHighlightChain() {
+  /** Undo any highlighting by changing color back to default. */
+    d3.selectAll('path').attr("stroke", "black");
+}
+
+
+
+function getLabelFromHtml(htmlString) {
+  /** Retrueve edge label from HTML DOM string. */
+  if (htmlString.includes('font-size="14.00">')){
+    edgeLabel = htmlString.split('font-size="14.00">')[1].split("</")[0].split(",");
+    return edgeLabel;
+  }
+}
+
+
+
+function highlightChain() {
+  /** Highlight a chain of transmission given the selected TextID's. */
+  paths = d3.selectAll('path');
+  edges = d3.selectAll('.edge');
+  edges // if on edge
+    .on("mouseover", function (d) {
+        textIDs = getLabelFromHtml(this.innerHTML); // get the current edge's label
+        if (textIDs){ // if it has a label
+          for (var i = 0; i < textIDs.length; i++) { // iterate over them
+            getEdgeByTextID(textIDs[i]); // and find edges with the same label
+        }
+      }
+    });
+  edges // if away from edge
+    .on("mouseout", function() {
+      unHighlightChain();
+    });   
+}
+
+
+
+function getEdgeByTextID(textID) {
+  /** Select any edges that contain the given textID. */
+  // Select all edges
+  edges = d3.selectAll('.edge').nodes();
+  // iterate over them
+  for (var i = 0; i < edges.length; i++) {
+    edgeStr = edges[i].innerHTML; // get their DOM information
+    edgeStr = edgeStr.split("font-family")[1];
+    if (edgeStr){ // check if it has a label
+      if (edgeStr.includes(textID)){ // check if label contains given ID
+        // and if so, color it
+        highlightEdgeByID(edges[i].id);
+      }
+    }
+  }
+}
+
+
+
+function postGraphLayout(){
+  /** Helper function that executes that should remain active, once graph is rendered. */
+  highlightChain();
+  displayNodeTooltip();
+}
+
+
+
 function renderGraph() {
   /** Build a complete graph with timeline and constraints and render it. */
   // get timeline as list of strings
@@ -249,21 +321,35 @@ function renderGraph() {
   // turn list of dot commands into string
   var dotLines = dot[0 % dot.length];
   var dotString = dotLines.join('');
-  // var dotString = 'graph { node [style="filled" tooltip=" "]"Long Name" [label="A"]  B  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed, color=grey]}'
 
-  console.log(dotString);
+  // debugging graphs
+  // var dotString = 'graph { node [style="filled" tooltip=" "]"Long Name" [label="A"]  B  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed] "Long Name"--C[label="AAA"]}'
+  // var dotString = 'graph { node [style="filled" tooltip=" "] A B C D E F          A--B[label="m1,m2,m3"]  A--C[label="m3"]  B--D[label="m1,m2"] C--E[label="m3"] D--E[label="m2"] D--F[label="m1"]}'
+
+  // console.log(dotString);
 
   // render graph in canvas
   graphviz
       .dot(dotString)
       .render()
-      .on("end", displayNodeTooltip) // display tooltips interactively, once graph is rendered
-      ;
-
+      .on("end", postGraphLayout)
+     ;
 }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+// Debugging
 function ttest() {
   // var dot = buildGraph(timeline, constraints);
   // TODO make adaptive
