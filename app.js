@@ -193,18 +193,14 @@ function getOrigin(data, key) {
 
 function getTextID(data, from, to) {
   /** Get list of text id's from transmissions data. */
-  // var ids = [];
-  var ids = "";
+  var ids = ""; // init string to contain all the edge labels
   for (var i = 0; i < data.length; i++) {
     if (data[i]['From']==from && data[i]['To']==to) {
-      // ids.push(data[i]['FileName'] + '\n');
-      // ids.join(data[i]['FileName'], "\n");
-      ids += data[i]['FileName'] + '\n';
+      // append to edge label string
+      ids += data[i]['FileName'] + '\n'; // new line for vertical stacking
     } 
   }
-  console.log(ids);
-  // console.log()
-  return ids.toString();
+  return ids;
 }
 
 
