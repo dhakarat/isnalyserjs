@@ -210,7 +210,6 @@ function getTextID(data, from, to) {
 
 
 
-
 function displayNodeTooltip() {
   /** When mouse hovers over a node, display a tooltip with additional information. */
   // select all d3 nodes in the canvas
@@ -241,104 +240,75 @@ function displayNodeTooltip() {
 
 
 
-// function selectEdge(edge) {
-//     selectedEdge = edge;
-//     selectedEdgeFill = selectedEdge.selectAll('path').attr("fill");
-//     selectedEdge.selectAll('path, polygon').attr("stroke", "red");
-// }
-
-
-
-function selectEdgeByID(edgeID) {
-  // console.log(edgeID);
+function highlightEdgeByID(edgeID) {
+  /** Select an edge, given its ID. */
   d3.select("g#" + edgeID).selectAll('path').attr("stroke", "#C10E1A");
 }
 
 
-function unSelectEdge() {
-    // selectedEdge2.selectAll('path, polygon').attr("stroke", "black");
 
-    // selectedEdge2 = d3.select(null);
+function unHighlightChain() {
+  /** Undo any highlighting by changing color back to default. */
     d3.selectAll('path').attr("stroke", "black");
-    // d3.select(null);
 }
-
 
 
 
 function getLabelFromHtml(htmlString) {
+  /** Retrueve edge label from HTML DOM string. */
   if (htmlString.includes('font-size="14.00">')){
-  // console.log(htmlString);
-  edgeLabel = htmlString.split('font-size="14.00">')[1].split("</")[0].split(",");
-  // console.log(edgeLabel[0]);
-  // if (edgeLabel[0] !== "   ") { // &nbsp;&nbsp;
-  return edgeLabel;
+    edgeLabel = htmlString.split('font-size="14.00">')[1].split("</")[0].split(",");
+    return edgeLabel;
   }
-
-  // }
 }
 
 
 
-
 function highlightChain() {
-
+  /** Highlight a chain of transmission given the selected TextID's. */
   paths = d3.selectAll('path');
-  // paths
-  //     .on("mouseover", function (d) {
-  //     d3.select(this).style('stroke', '#E4BE9E');
-  //   });
-  // paths
-  //   .on("mouseout", function() {
-  //     d3.select(this).style('stroke', 'black');
-
-  //   });   
-  // console.log(edges);
   edges = d3.selectAll('.edge');
-  edges
+  edges // if on edge
     .on("mouseover", function (d) {
-        // selectEdgeByID(this.id);
-        textIDs = getLabelFromHtml(this.innerHTML);
-        if (textIDs){
-          
-        for (var i = 0; i < textIDs.length; i++) {
-          if (textIDs[i] !== "ignore"){
-            // console.log(textIDs[i]);
-            getEdgeByTextID(textIDs[i]);
+        textIDs = getLabelFromHtml(this.innerHTML); // get the current edge's label
+        if (textIDs){ // if it has a label
+          for (var i = 0; i < textIDs.length; i++) { // iterate over them
+            getEdgeByTextID(textIDs[i]); // and find edges with the same label
         }
-
-          }
-        }
+      }
     });
-  edges
+  edges // if away from edge
     .on("mouseout", function() {
-      unSelectEdge();
+      unHighlightChain();
     });   
 }
 
 
 
 function getEdgeByTextID(textID) {
-  // console.log(textID);
-  // if text
+  /** Select any edges that contain the given textID. */
+  // Select all edges
   edges = d3.selectAll('.edge').nodes();
+  // iterate over them
   for (var i = 0; i < edges.length; i++) {
-    edgeStr = edges[i].innerHTML;
-    // console.log(edgeStr);
+    edgeStr = edges[i].innerHTML; // get their DOM information
     edgeStr = edgeStr.split("font-family")[1];
-    if (edgeStr){
-
-      if (edgeStr.includes(textID)){
-      // console.log(edgeStr);
-        selectEdgeByID(edges[i].id);
-    }
+    if (edgeStr){ // check if it has a label
+      if (edgeStr.includes(textID)){ // check if label contains given ID
+        // and if so, color it
+        highlightEdgeByID(edges[i].id);
+      }
     }
   }
 }
 
 
 
-
+function postGraphLayout(){
+  /** Helper function that executes that should remain active, once graph is rendered. */
+  highlightChain();
+  displayNodeTooltip();
+}
 
 
 
@@ -356,6 +326,8 @@ function renderGraph() {
   // turn list of dot commands into string
   var dotLines = dot[0 % dot.length];
   var dotString = dotLines.join('');
+
+  // debugging graphs
   // var dotString = 'graph { node [style="filled" tooltip=" "]"Long Name" [label="A"]  B  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed] "Long Name"--C[label="AAA"]}'
   // var dotString = 'graph { node [style="filled" tooltip=" "] A B C D E F          A--B[label="m1,m2,m3"]  A--C[label="m3"]  B--D[label="m1,m2"] C--E[label="m3"] D--E[label="m2"] D--F[label="m1"]}'
 
@@ -365,14 +337,24 @@ function renderGraph() {
   graphviz
       .dot(dotString)
       .render()
-      // .on("end", displayNodeTooltip) // display tooltips interactively, once graph is rendered
-      .on("end", highlightChain)
+      .on("end", postGraphLayout)
      ;
-
 }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+// Debugging
 function ttest() {
   // var dot = buildGraph(timeline, constraints);
   // TODO make adaptive
