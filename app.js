@@ -13,11 +13,6 @@ var tooltip = d3.select("#graph").append("div")
     .style("opacity", 0); // init invisibly
 
 
-// var chain = d3.select("#graph").append("div")
-//     .attr("class", "chain")
-//     .style("opacity", 0); // init invisibly
-
-
 
 // lookup table for edge types
 var transmissionTypeLookup = {0:'solid', 1:'dashed', 2:'dotted', 3:'bold'};
