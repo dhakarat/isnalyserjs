@@ -92,7 +92,7 @@ function buildTimeline(stepsize) {
   var timelineList = [];
   // append new nodes to timeline according to stepsize
   for (var i = timelineMin; i < timelineMax;) {
-      timeline.push(' ' + i.toString()  + '->' + (i+stepsize).toString() + ' [penwidth = 3, arrowhead = None]');
+      timeline.push(' ' + i.toString()  + '->' + (i+stepsize).toString() + ' [penwidth = 3, arrowhead = None tooltip=" " label="     "]');
       timelineList.push(i); // also have a list of timeline values
       i = i+stepsize;
   }
@@ -120,7 +120,7 @@ function buildGraph(timeline, constraints) {
   dot = dot.concat(constraints);
   // add connections
   dataTransmissions.forEach((item,i) =>
-      dot.push(' ' +'"'+ item.From +'"'+ ' -> ' + '"'+ item.To +'"' + ' [label=' +'"'+ getTextID(dataTransmissions, item.From, item.To)  +'"'+ ' style='+ transmissionTypeLookup[item.TransmissionType]  +']') // hyphens are necessary
+      dot.push(' ' +'"'+ item.From +'"'+ ' -> ' + '"'+ item.To +'"' + ' [labeltooltip=" " label=' +'"'+ getTextID(dataTransmissions, item.From, item.To)  +'"'+ ' style='+ transmissionTypeLookup[item.TransmissionType]  +' ]') // hyphens are necessary
 
       );
   // and complete it
@@ -241,19 +241,17 @@ function displayNodeTooltip() {
 
 
 
-function selectEdge(edge) {
-    selectedEdge = edge;
-    selectedEdgeFill = selectedEdge.selectAll('path').attr("fill");
-    selectedEdge.selectAll('path, polygon').attr("stroke", "red");
-}
+// function selectEdge(edge) {
+//     selectedEdge = edge;
+//     selectedEdgeFill = selectedEdge.selectAll('path').attr("fill");
+//     selectedEdge.selectAll('path, polygon').attr("stroke", "red");
+// }
 
 
 
 function selectEdgeByID(edgeID) {
-  // selectedEdge2 = d3.select("g#" + edgeID);
-  // selectedEdge2.selectAll('path, polygon').attr("stroke", "red");
-  d3.select("g#" + edgeID).selectAll('path').attr("stroke", "red");
-
+  console.log(edgeID);
+  d3.select("g#" + edgeID).selectAll('path').attr("stroke", "#C10E1A");
 }
 
 
@@ -269,8 +267,12 @@ function unSelectEdge() {
 
 
 function getLabelFromHtml(htmlString) {
-  edgeLabel = htmlString.split('font-size="14.00">')[1].split("</")[0];
-  return edgeLabel.split(",");
+  edgeLabel = htmlString.split('font-size="14.00">')[1].split("</")[0].split(",");
+  console.log(edgeLabel);
+  // if (edgeLabel != [" "]) {
+    return edgeLabel;
+
+  // }
 }
 
 
@@ -310,8 +312,8 @@ function getEdgeByTextID(textID) {
   edges = d3.selectAll('.edge').nodes();
   for (var i = 0; i < edges.length; i++) {
     edgeStr = edges[i].innerHTML;
-    if (edgeStr.includes(textID)){
-      // console.log('yes');
+    if (edgeStr.includes(textID) && textID != " "){
+      // console.log(edgeStr);
       selectEdgeByID(edges[i].id);
     }
   }
