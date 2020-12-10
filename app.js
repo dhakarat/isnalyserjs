@@ -250,17 +250,29 @@ function selectEdge(edge) {
 
 
 function selectEdgeByID(edgeID) {
-  selectedEdge2 = d3.select("g#" + edgeID);
-      selectedEdge2.selectAll('path, polygon').attr("stroke", "red");
+  // selectedEdge2 = d3.select("g#" + edgeID);
+  // selectedEdge2.selectAll('path, polygon').attr("stroke", "red");
+  d3.select("g#" + edgeID).selectAll('path').attr("stroke", "red");
 
 }
 
 
 function unSelectEdge() {
-        selectedEdge2.selectAll('path, polygon').attr("stroke", "black");
+    // selectedEdge2.selectAll('path, polygon').attr("stroke", "black");
 
-    selectedEdge2 = d3.select(null);
+    // selectedEdge2 = d3.select(null);
+    d3.selectAll('path').attr("stroke", "black");
+    // d3.select(null);
 }
+
+
+
+
+function getLabelFromHtml(htmlString) {
+  edgeLabel = htmlString.split('font-size="14.00">')[1].split("</")[0];
+  return edgeLabel.split(",");
+}
+
 
 
 
@@ -281,11 +293,14 @@ function highlightChain() {
   edges
     .on("mouseover", function (d) {
         // selectEdgeByID(this.id);
-        getEdgeByTextID('some text');
+        textIDs = getLabelFromHtml(this.innerHTML);
+        for (var i = 0; i < textIDs.length; i++) {
+          getEdgeByTextID(textIDs[i]);
+        }
     });
   edges
     .on("mouseout", function() {
-      // unSelectEdge();
+      unSelectEdge();
     });   
 }
 
@@ -296,8 +311,8 @@ function getEdgeByTextID(textID) {
   for (var i = 0; i < edges.length; i++) {
     edgeStr = edges[i].innerHTML;
     if (edgeStr.includes(textID)){
-      console.log('yes');
-      // selectEdgeByID(edges[i].id);
+      // console.log('yes');
+      selectEdgeByID(edges[i].id);
     }
   }
 }
@@ -309,20 +324,21 @@ function getEdgeByTextID(textID) {
 
 
 function renderGraph() {
-  // /** Build a complete graph with timeline and constraints and render it. */
-  // // get timeline as list of strings
-  // var timeline = buildTimeline(stepSize)[0];
-  // // get constraints as list of strings
-  // var constraints = matchToTimeline()
-  // // get main graph as list of constraints
-  // var dot = buildGraph(timeline, constraints);
-  // // TODO make adaptive
-  // graphviz.width(1000);
-  // graphviz.height(1500);
-  // // turn list of dot commands into string
-  // var dotLines = dot[0 % dot.length];
-  // var dotString = dotLines.join('');
-  var dotString = 'graph { node [style="filled" tooltip=" "]"Long Name" [label="A"]  B  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed] "Long Name"--C[label="AAA"]}'
+  /** Build a complete graph with timeline and constraints and render it. */
+  // get timeline as list of strings
+  var timeline = buildTimeline(stepSize)[0];
+  // get constraints as list of strings
+  var constraints = matchToTimeline()
+  // get main graph as list of constraints
+  var dot = buildGraph(timeline, constraints);
+  // TODO make adaptive
+  graphviz.width(1000);
+  graphviz.height(1500);
+  // turn list of dot commands into string
+  var dotLines = dot[0 % dot.length];
+  var dotString = dotLines.join('');
+  // var dotString = 'graph { node [style="filled" tooltip=" "]"Long Name" [label="A"]  B  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed] "Long Name"--C[label="AAA"]}'
+  // var dotString = 'graph { node [style="filled" tooltip=" "] A B C D E F          A--B[label="m1,m2,m3"]  A--C[label="m3"]  B--D[label="m1,m2"] C--E[label="m3"] D--E[label="m2"] D--F[label="m1"]}'
 
   console.log(dotString);
 
