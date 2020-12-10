@@ -13,6 +13,12 @@ var tooltip = d3.select("#graph").append("div")
     .style("opacity", 0); // init invisibly
 
 
+// var chain = d3.select("#graph").append("div")
+//     .attr("class", "chain")
+//     .style("opacity", 0); // init invisibly
+
+
+
 // lookup table for edge types
 var transmissionTypeLookup = {0:'solid', 1:'dashed', 2:'dotted', 3:'bold'};
 
@@ -235,21 +241,75 @@ function displayNodeTooltip() {
 
 
 
+function colorPath(pathID) {
+  var path = d3.select(pathID);
+  console.log(path);
+  // path.style('stroke', 'blue')
+  // d3.select("path#" + pathID).style('stroke', '#E4BE9E');
+
+}
+
+
+
+function highlightChain() {
+
+  paths = d3.selectAll('path');
+  // paths
+  //     .on("mouseover", function (d) {
+  //     d3.select(this).style('stroke', '#E4BE9E');
+  //   });
+  // paths
+  //   .on("mouseout", function() {
+  //     d3.select(this).style('stroke', 'black');
+
+  //   });   
+  // console.log(edges);
+  edges = d3.selectAll('.edge');
+  edges
+    .on("mouseover", function (d) {
+      d3.select(this).style('fill', '#E4BE9E');
+
+
+
+      // console.log(this.id);
+      // colorPath(this.id);
+      console.log(this.innerHTML);
+      d3.select(this.id).style('fill', "blue");
+      // const title = SVG.querySelector(this);
+      // this.style('stroke', "#B8B8B8")
+      // d.style('stroke', "#E4BE9E")
+    });
+  // edges
+  //   .on("click", function (d) {
+  //     console.log("im on the edge")
+  //   });
+     // When mouse is not one a node
+  edges
+    .on("mouseout", function() {
+      d3.select(this).style('stroke', 'black');
+
+    });   
+}
+
+
+
+
+
 function renderGraph() {
-  /** Build a complete graph with timeline and constraints and render it. */
-  // get timeline as list of strings
-  var timeline = buildTimeline(stepSize)[0];
-  // get constraints as list of strings
-  var constraints = matchToTimeline()
-  // get main graph as list of constraints
-  var dot = buildGraph(timeline, constraints);
-  // TODO make adaptive
-  graphviz.width(1000);
-  graphviz.height(1500);
-  // turn list of dot commands into string
-  var dotLines = dot[0 % dot.length];
-  var dotString = dotLines.join('');
-  // var dotString = 'graph { node [style="filled" tooltip=" "]"Long Name" [label="A"]  B  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed, color=grey]}'
+  // /** Build a complete graph with timeline and constraints and render it. */
+  // // get timeline as list of strings
+  // var timeline = buildTimeline(stepSize)[0];
+  // // get constraints as list of strings
+  // var constraints = matchToTimeline()
+  // // get main graph as list of constraints
+  // var dot = buildGraph(timeline, constraints);
+  // // TODO make adaptive
+  // graphviz.width(1000);
+  // graphviz.height(1500);
+  // // turn list of dot commands into string
+  // var dotLines = dot[0 % dot.length];
+  // var dotString = dotLines.join('');
+  var dotString = 'graph { node [style="filled" tooltip=" "]"Long Name" [label="A"]  B  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed] "Long Name"--C[label="AAA"]}'
 
   console.log(dotString);
 
@@ -257,8 +317,9 @@ function renderGraph() {
   graphviz
       .dot(dotString)
       .render()
-      .on("end", displayNodeTooltip) // display tooltips interactively, once graph is rendered
-      ;
+      // .on("end", displayNodeTooltip) // display tooltips interactively, once graph is rendered
+      .on("end", highlightChain)
+     ;
 
 }
 
