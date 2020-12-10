@@ -241,12 +241,25 @@ function displayNodeTooltip() {
 
 
 
-function colorPath(pathID) {
-  var path = d3.select(pathID);
-  console.log(path);
-  // path.style('stroke', 'blue')
-  // d3.select("path#" + pathID).style('stroke', '#E4BE9E');
+function selectEdge(edge) {
+    selectedEdge = edge;
+    selectedEdgeFill = selectedEdge.selectAll('path').attr("fill");
+    selectedEdge.selectAll('path, polygon').attr("stroke", "red");
+}
 
+
+
+function selectEdgeByID(edgeID) {
+  selectedEdge2 = d3.select("g#" + edgeID);
+      selectedEdge2.selectAll('path, polygon').attr("stroke", "red");
+
+}
+
+
+function unSelectEdge() {
+        selectedEdge2.selectAll('path, polygon').attr("stroke", "black");
+
+    selectedEdge2 = d3.select(null);
 }
 
 
@@ -267,29 +280,29 @@ function highlightChain() {
   edges = d3.selectAll('.edge');
   edges
     .on("mouseover", function (d) {
-      d3.select(this).style('fill', '#E4BE9E');
-
-
-
-      // console.log(this.id);
-      // colorPath(this.id);
-      console.log(this.innerHTML);
-      d3.select(this.id).style('fill', "blue");
-      // const title = SVG.querySelector(this);
-      // this.style('stroke', "#B8B8B8")
-      // d.style('stroke', "#E4BE9E")
+        // selectEdgeByID(this.id);
+        getEdgeByTextID('some text');
     });
-  // edges
-  //   .on("click", function (d) {
-  //     console.log("im on the edge")
-  //   });
-     // When mouse is not one a node
   edges
     .on("mouseout", function() {
-      d3.select(this).style('stroke', 'black');
-
+      // unSelectEdge();
     });   
 }
+
+
+
+function getEdgeByTextID(textID) {
+  edges = d3.selectAll('.edge').nodes();
+  for (var i = 0; i < edges.length; i++) {
+    edgeStr = edges[i].innerHTML;
+    if (edgeStr.includes(textID)){
+      console.log('yes');
+      // selectEdgeByID(edges[i].id);
+    }
+  }
+}
+
+
 
 
 
