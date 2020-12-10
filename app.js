@@ -92,7 +92,7 @@ function buildTimeline(stepsize) {
   var timelineList = [];
   // append new nodes to timeline according to stepsize
   for (var i = timelineMin; i < timelineMax;) {
-      timeline.push(' ' + i.toString()  + '->' + (i+stepsize).toString() + ' [penwidth = 3, arrowhead = None tooltip=" " label="     "]');
+      timeline.push(' ' + i.toString()  + '->' + (i+stepsize).toString() + ' [penwidth = 3, arrowhead = None tooltip=" "]');
       timelineList.push(i); // also have a list of timeline values
       i = i+stepsize;
   }
@@ -250,7 +250,7 @@ function displayNodeTooltip() {
 
 
 function selectEdgeByID(edgeID) {
-  console.log(edgeID);
+  // console.log(edgeID);
   d3.select("g#" + edgeID).selectAll('path').attr("stroke", "#C10E1A");
 }
 
@@ -267,10 +267,13 @@ function unSelectEdge() {
 
 
 function getLabelFromHtml(htmlString) {
+  if (htmlString.includes('font-size="14.00">')){
+  // console.log(htmlString);
   edgeLabel = htmlString.split('font-size="14.00">')[1].split("</")[0].split(",");
-  console.log(edgeLabel);
-  // if (edgeLabel != [" "]) {
-    return edgeLabel;
+  // console.log(edgeLabel[0]);
+  // if (edgeLabel[0] !== "   ") { // &nbsp;&nbsp;
+  return edgeLabel;
+  }
 
   // }
 }
@@ -296,8 +299,15 @@ function highlightChain() {
     .on("mouseover", function (d) {
         // selectEdgeByID(this.id);
         textIDs = getLabelFromHtml(this.innerHTML);
+        if (textIDs){
+          
         for (var i = 0; i < textIDs.length; i++) {
-          getEdgeByTextID(textIDs[i]);
+          if (textIDs[i] !== "ignore"){
+            // console.log(textIDs[i]);
+            getEdgeByTextID(textIDs[i]);
+        }
+
+          }
         }
     });
   edges
@@ -309,12 +319,19 @@ function highlightChain() {
 
 
 function getEdgeByTextID(textID) {
+  // console.log(textID);
+  // if text
   edges = d3.selectAll('.edge').nodes();
   for (var i = 0; i < edges.length; i++) {
     edgeStr = edges[i].innerHTML;
-    if (edgeStr.includes(textID) && textID != " "){
+    // console.log(edgeStr);
+    edgeStr = edgeStr.split("font-family")[1];
+    if (edgeStr){
+
+      if (edgeStr.includes(textID)){
       // console.log(edgeStr);
-      selectEdgeByID(edges[i].id);
+        selectEdgeByID(edges[i].id);
+    }
     }
   }
 }
@@ -342,7 +359,7 @@ function renderGraph() {
   // var dotString = 'graph { node [style="filled" tooltip=" "]"Long Name" [label="A"]  B  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed] "Long Name"--C[label="AAA"]}'
   // var dotString = 'graph { node [style="filled" tooltip=" "] A B C D E F          A--B[label="m1,m2,m3"]  A--C[label="m3"]  B--D[label="m1,m2"] C--E[label="m3"] D--E[label="m2"] D--F[label="m1"]}'
 
-  console.log(dotString);
+  // console.log(dotString);
 
   // render graph in canvas
   graphviz
