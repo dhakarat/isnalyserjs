@@ -51,7 +51,6 @@ function loadTransmittersFile() {
         alert(error);
   }
   // call buildTimeline on load
-  // transmittersReader.addEventListener("load", buildTimeline, false);
   if (transmittersFile) {
     transmittersReader.readAsText(transmittersFile);
   }      
