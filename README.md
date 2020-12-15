@@ -133,11 +133,9 @@ Once you are happy with your graph, you can export it as a `pdf` or `svg` file b
 
 
 
-
-
 ## The motivation behind the project
 
-The `isnalyserjs` aims at facilitating the analysis of large quantity of __aḥādīth__ and more specifically their chains of transmiters or __asānid__ by allowing scholars to visualise these chains of transmitters quickly in a complete graph that includes geo-spatial and chronological information.
+The `isnalyserjs` aims at facilitating the analysis of large quantity of __aḥādīth__ and more specifically their chains of transmissions or __asānid__ by allowing scholars to visualize these chains of transmitters quickly in a complete graph that includes geo-spatial and chronological information.
 The `isnalyserjs` is an interactive approach to this problem. 
 
 
@@ -150,7 +148,7 @@ Below, are some tips for people looking to contribute on a code level.
 
 ### Filing `Github` Issues
 
-If you find any bugs or find that something is broken, don't hesitate to file a `Github` issue. This can be done through the Issues tab in the repository page. Make sure to formulate the problem encountered as precisely as possible. Ideally, include steps to replicate the behaviour obserbed.
+If you find any bugs or find that something is broken, don't hesitate to file a `Github` issue. This can be done through the Issues tab in the repository page. Make sure to formulate the problem encountered as precisely as possible. Ideally, include steps to replicate the behaviour observed.
 
 <img src="https://user-images.githubusercontent.com/12030245/102231190-fc89e980-3eed-11eb-9093-013704e4ec39.png" width="400">
 
@@ -167,7 +165,8 @@ in the `isnalyserjs` directory.
 
 ### Python Version
 
-If you are interested in this project, consider using the `python` twin of this project which is already released and can be installed via
+There is also a `Python` version of this project. If you are interested in this, you can install it via
+
 ```bash
 pip install isnalyser
 ```
