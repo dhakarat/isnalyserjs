@@ -79,10 +79,13 @@ function abbreviateName(name) {
   If name is longer that 7 characters and consists
   of multiple names, return a ...-abbreviated version.
   */
+  if (typeof name !== 'string') {
+        alert('Make sure transmitter names are strings.');
+  }
   if (name.length > 7 && name.split(' ').length > 1) {
     var lastName = name.split(' ').slice(-1).join(' '); // get last name (last slice)
     var shortName = name.substring(0,5) + '... ' + lastName; // concat names to form abbreviated version
-
+    
     return shortName;
   }
   else{
@@ -412,5 +415,6 @@ function test(){
     // console.log('working...');
     // var shortName = abbreviateName('Ḥarmalah b. Yaḥyā al-Tugībī');
     // console.log(shortName);
-    console.log(![0,10,10].includes(10));
+    // console.log(![0,10,10].includes(10));
+    console.log(!(typeof "ljfds" == 'string'));
 }
