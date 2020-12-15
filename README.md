@@ -4,7 +4,7 @@ The Interactive Isnalyser
 
 ## Automated isnād tree visualisations
 
-For scholars studying __Ḥadīth__ texts, drawing an __isnād__ tree with more than 40 transmitters is a tedious work and finding the right medium to desplay it fully can even prove to be impossible. The `isnalyserjs` is a simple program for the automation of __isnād__ trees drawing and their interactive exploration.
+For scholars studying __Ḥadīth__ texts, drawing an __isnād__ tree with more than 40 transmitters is a tedious work and finding the right medium to desplay it fully can even prove to be impossible. The `isnalyserjs` is a simple program for the automation of __isnād__ trees drawing and their interactive exploration.\
 
   <img src="https://user-images.githubusercontent.com/12030245/95599970-13c1dc00-0a52-11eb-96e9-f9969fdd572f.png" width="350">
 
@@ -24,15 +24,6 @@ Users with data can directly upload it and render the corresponding graph. Here 
 
 
 <div float="right">
-<style type="text/css">
-.tg {width :100; display:inline-block;}
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-</style>
 <table class="tg">
 <thead>
   <tr>
@@ -73,19 +64,11 @@ The data format needs to be a `csv` and have at least the `From` and `To` column
 
 ### Upload a Transmitters File
 
-For the transmitters file, only two columns are required. A `Transmitter` and a death data (`dAH`). Additional columns, the `isnalyserjs` can handle are `Orgin` and `Bio`, which can contain biographic information.
+For the transmitters file, only two columns are required. A `Transmitter` and a death data (`dAH`). Additional columns, the `isnalyserjs` can handle are `Orgin` and `Bio`, which can contain biographic information.\
 
-  <img src="https://user-images.githubusercontent.com/12030245/102222516-ce071100-3ee3-11eb-986a-70d0f9fd4a32.png" width="200">
+<img src="https://user-images.githubusercontent.com/12030245/102222516-ce071100-3ee3-11eb-986a-70d0f9fd4a32.png" width="200">
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-lboi{border-color:inherit;text-align:left;vertical-align:middle}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-</style>
+
 <table class="tg">
 <thead>
   <tr>
