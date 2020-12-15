@@ -4,7 +4,7 @@ The Interactive Isnalyser
 
 ## Automated isnād tree visualisations
 
-For scholars studying Ḥadīth texts, drawing an __isnād__ tree with more than 40 transmitters is a tedious work and finding the right medium to desplay it fully can even prove to be impossible. The `isnalyserjs` is a simple program for the automation of __isnād__ trees drawing and their interactive exploration.
+For scholars studying __Ḥadīth__ texts, drawing an __isnād__ tree with more than 40 transmitters is a tedious work and finding the right medium to desplay it fully can even prove to be impossible. The `isnalyserjs` is a simple program for the automation of __isnād__ trees drawing and their interactive exploration.
 
   <img src="https://user-images.githubusercontent.com/12030245/95599970-13c1dc00-0a52-11eb-96e9-f9969fdd572f.png" width="350">
 
@@ -14,12 +14,15 @@ For scholars studying Ḥadīth texts, drawing an __isnād__ tree with more than
 
 ## How to use it
 
-Users with data can directly upload it and render the corresponding graph. Here we will go trough this process step by step. What the data needs to look like for the `isnalyserjs` being able to handle it, will be discussed in the next section.
+Users with data can directly upload it and render the corresponding graph. Here we will go trough this process step by step, and show, how the data needs to look like.
 
-### Upload a Transmissions File
-<p float="left">
-  <img src="https://user-images.githubusercontent.com/12030245/102222479-c0ea2200-3ee3-11eb-9b18-b7442b7313b8.png" width="200">
- </p>
+### Upload a Transmissions File 
+
+<img src="https://user-images.githubusercontent.com/12030245/102222479-c0ea2200-3ee3-11eb-9b18-b7442b7313b8.png" width="200">
+
+
+
+
 <div float="right">
 <style type="text/css">
 .tg {width :100; display:inline-block;}
@@ -61,6 +64,7 @@ Users with data can directly upload it and render the corresponding graph. Here 
 </tbody>
 </table>
 </div>
+
 
 
 
@@ -133,17 +137,35 @@ Once you are happy with your graph, you can export it as a `pdf` or `svg` file b
 
 ## The motivation behind the project
 
-The `isnalyser` aims at facilitating the analysis of large quantity of __aḥādīth__ and more specifically their chains of transmiters or __asānid__ by allowing scholars to visualise these chains of transmitters quickly in a complete graph that includes geo-spatial and chronological information.
+The `isnalyserjs` aims at facilitating the analysis of large quantity of __aḥādīth__ and more specifically their chains of transmiters or __asānid__ by allowing scholars to visualise these chains of transmitters quickly in a complete graph that includes geo-spatial and chronological information.
 The `isnalyserjs` is an interactive approach to this problem. 
 
 
 
-## Installation for Development
-So far, the `isnalyserjs` is in a very early stage of development. However, suggesting features, improvements or fixes through github issues is appreciated! To actively participate in development and testing, you can clone this repository and host it locally. This can be done by simply running
+## Contributing
+
+Contribution in any form or shape is highly welcome. Ways to contribute range from mailing the authors, over filing `Github` issues to pull requests. So, if you find any bugs, have ideas for features, or need help, let us know! We are eager to support you. :)
+
+Below, are some tips for people looking to contribute on a code level.
+
+### Filing `Github` Issues
+
+If you find any bugs or find that something is broken, don't hesitate to file a `Github` issue. This can be done through the Issues tab in the repository page. Make sure to formulate the problem encountered as precisely as possible. Ideally, include steps to replicate the behaviour obserbed.
+
+<img src="https://user-images.githubusercontent.com/12030245/102231190-fc89e980-3eed-11eb-9093-013704e4ec39.png" width="400">
+
+
+
+### Installation for Development
+To actively participate in development and testing, you can clone this repository and host it locally. This can be done by simply running
 ```bash
 python -m http.server
 ```
 in the `isnalyserjs` directory.
+
+
+
+### Python Version
 
 If you are interested in this project, consider using the `python` twin of this project which is already released and can be installed via
 ```bash
