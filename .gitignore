@@ -53,6 +53,10 @@ example_data/transmissions_umar.csv
 
 example_data/_transmitters_ali.csv
 example_data/_transmissions_ali.csv
+
+example_data/corrupt_transmitters.csv
+example_data/corrupt.csv
+
 # ignore all files starting with . or ~
 .*
 ~*
