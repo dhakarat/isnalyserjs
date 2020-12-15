@@ -22,32 +22,20 @@ var transmissionTypeLookup = {0:'solid', 1:'dashed', 2:'dotted', 3:'bold'};
 
 function loadTransmissionsFile() { 
   /** Get loaded transmissions file and store in reader variable. */
-  // load transmissions file
+  // load transmissions file 
   var transmissionsFile = document.querySelector('div.transmissions input[type=file]').files[0];
-  // console.log(transmissionsFile.name.split('.').slice(-1)[0]);
   var fileExtension = transmissionsFile.name.split('.').slice(-1)[0];
-
+  // check if uploaded file is a csv
   if (fileExtension !== 'csv') {
-    {
         var error = "Ivalid file type : "+ fileExtension+"\n\n";
         error += "Please make sure to upload a csv file."
         alert(error);
-    }
-
   }
-
   // call buildGraph on load
-  // transmissionsReader.addEventListener("load", test, false);
   if (transmissionsFile) {
     transmissionsReader.readAsText(transmissionsFile);
-
-
-
-
   }      
-    // var dataTransmissions_check = d3.csvParse(transmissionsReader.result);
 
-    // console.log(dataTransmissions_check);
 }
 
 
@@ -55,6 +43,13 @@ function loadTransmittersFile() {
   /** Get loaded transmitters file and store in reader variable. */
   // load transmitters file
   var transmittersFile = document.querySelector('div.transmitters input[type=file]').files[0];   
+  var fileExtension = transmittersFile.name.split('.').slice(-1)[0];
+  // check if uploaded file is a csv
+  if (fileExtension !== 'csv') {
+        var error = "Ivalid file type : "+ fileExtension+"\n\n";
+        error += "Please make sure to upload a csv file."
+        alert(error);
+  }
   // call buildTimeline on load
   // transmittersReader.addEventListener("load", buildTimeline, false);
   if (transmittersFile) {
@@ -126,19 +121,18 @@ function buildGraph(timeline, constraints) {
   var dataTransmitters = d3.csvParse(transmittersReader.result);
   var dataTransmissions = d3.csvParse(transmissionsReader.result);
 
-  // console.log(dataTransmissions.columns.includes('From') && dataTransmissions.columns.includes('To'));
+  // check if transmissions file contains necessary columns
   if (!(dataTransmissions.columns.includes('From') && dataTransmissions.columns.includes('To'))) {
     var error = "Invalid colums\n\n";
     error += "Please make sure to that your transmissions file has From and To columns."
     alert(error);
   }
+  // check if transmitters file contains necessary columns
   if (!(dataTransmitters.columns.includes('Transmitters') && dataTransmitters.columns.includes('dAH'))) {
     var error = "Invalid colums\n\n";
     error += "Please make sure to that your transmitters file has Transmitters and dAH columns."
     alert(error);
   }
-
-
 
   // init dot source
   var dot = ['strict digraph  { node [style="filled" fillcolor = "white"  shape = "none" tooltip=" "]'];
