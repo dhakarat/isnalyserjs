@@ -102,12 +102,12 @@ For the transmitters file, only two columns are required. A `Transmitter` and a 
 
 ### Step Size 
 This will be the step size in years of the time-line that is rendered next to the graph. The default setting is 15. It can be adjusted according to the data provided. When the data contains many transmitters, a low step size may be useful, while for files with few transmitters over a short timespan, a higher value can be more suitable.
-<img src="https://user-images.githubusercontent.com/12030245/102227063-6c49a580-3ee9-11eb-8d8f-f273da15aeab.png" width="200">
+  <img src="https://user-images.githubusercontent.com/12030245/102227063-6c49a580-3ee9-11eb-8d8f-f273da15aeab.png" width="200">
 
 
 ### Render Graph
 Now, that the data is loaded and the step size is set, you can press the `Render Graph` button, and our graph will be displayed in the canvas, ready to be explored!
-<img src="https://user-images.githubusercontent.com/12030245/102222589-e70fc200-3ee3-11eb-8854-613eeb8bd9c3.png" width="200">
+  <img src="https://user-images.githubusercontent.com/12030245/102222589-e70fc200-3ee3-11eb-8854-613eeb8bd9c3.png" width="200">
 
 ### Export Graph
 Once you are happy with your graph, you can export it as a `pdf` or `svg` file by pressing the `Export Graph` button.
