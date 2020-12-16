@@ -259,12 +259,15 @@ function getTextID(data, from, to) {
 function displayNodeTooltip() {
   /** When mouse hovers over a node, display a tooltip with additional information. */
   // select all d3 nodes in the canvas
-  nodes = d3.selectAll('.node'); //,.edge 
+  nodes = d3.selectAll('.node'); //,.edge
+
+  var clicked = false; 
   // load transmitters data
   var dataTransmitters = d3.csvParse(transmittersReader.result);
   // when mouse is on a node
   nodes
     .on("mouseover", function (d) {
+      // clicked = false;
       tooltip.html(d)
         // display summarizing data in tooltip
         .text(
@@ -280,9 +283,45 @@ function displayNodeTooltip() {
   // When mouse is not one a node
   nodes
     .on("mouseout", function() {
-      tooltip.style("opacity", 0); // reduce opacity of element
-    });    
+      if(!clicked){
+        tooltip.style("opacity", 0); // reduce opacity of element
+      }
+    });
+  nodes
+    .on("click", function (d) { 
+      clicked = true;
+            tooltip.html(d)
+        // display summarizing data in tooltip
+        .text(
+          d.key + "\n"
+          + "Year of death: " + getDAH(dataTransmitters, d.key) + "\n"
+          + "City of origin: " + getOrigin(dataTransmitters, d.key) + "\n"
+          + "Bio: " + getBio(dataTransmitters, d.key))
+        // increase opacity of element
+        .style("opacity", 0.99) // 0.9 looks nice
+        // place element where the event happend
+        .style("left", (d3.event.pageX + 15) + "px") 
+        .style("top", (d3.event.pageY - 10) + "px"); 
+    });
+    d3.select("body").on("click",function(){
+      // if(clicked){
+      //   clicked = false;
+        // TODOOOOOOOOOOO
+
+      // }
+    var outside = nodes.filter(equalToEventTarget).empty();
+    if (outside) {
+      console.log('yoyoy');
+      clicked = false;
+    }
+        // tooltip.classed("hidden", true);
+    
+});
   });
+}
+
+function equalToEventTarget() {
+    return this == d3.event.target;
 }
 
 
