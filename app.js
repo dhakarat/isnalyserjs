@@ -398,7 +398,9 @@ function renderTestGraph() {
   var dotString = 'graph {"Long Name" [label="A"]  B[tooltip="origin\ndAH\nbio"]  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed, color=grey]}'
   graphviz
       .dot(dotString)
-      .render();
+      .render()
+      // .on("end", postGraphLayout)
+      ;
 }
 
 
