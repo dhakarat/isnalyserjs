@@ -227,6 +227,20 @@ function getOrigin(data, key) {
   }
 }
 
+function getBio(data, key) {
+  /** Get origin of a transmitter. */
+  for (var i = 0; i < data.length; i++) {
+    if (data[i]['Transmitters'] == key) {
+      if (data[i]['Bio'] !== undefined){
+        return data[i]['Bio'];
+      }
+      else{
+        return " ";
+      }
+    }
+  }
+}
+
 
 
 function getTextID(data, from, to) {
@@ -256,7 +270,8 @@ function displayNodeTooltip() {
         .text(
           d.key + "\n"
           + "Year of death: " + getDAH(dataTransmitters, d.key) + "\n"
-          + "City of origin: " + getOrigin(dataTransmitters, d.key)) 
+          + "City of origin: " + getOrigin(dataTransmitters, d.key) + "\n"
+          + "Bio: " + getBio(dataTransmitters, d.key))
         // increase opacity of element
         .style("opacity", 0.99) // 0.9 looks nice
         // place element where the event happend
