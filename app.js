@@ -12,6 +12,13 @@ var tooltip = d3.select("#graph").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0); // init invisibly
 
+// canvas size
+var margin = 20;
+var width = window.innerWidth - margin;
+var height = window.innerHeight - margin;
+
+
+
 
 
 // lookup table for edge types
@@ -353,9 +360,9 @@ function renderGraph() {
   var constraints = matchToTimeline()
   // get main graph as list of constraints
   var dot = buildGraph(timeline, constraints);
-  // TODO make adaptive
-  graphviz.width(1000);
-  graphviz.height(1500);
+  // adaptive size
+  graphviz.width(width);
+  graphviz.height(height);
   // turn list of dot commands into string
   var dotLines = dot[0 % dot.length];
   var dotString = dotLines.join('');
@@ -376,7 +383,6 @@ function renderGraph() {
 
 
 
-
 function exportGraph() {
   /** Download the rendered graph as svg. */
   downloadSVG();
@@ -384,32 +390,16 @@ function exportGraph() {
 
 
 
-
-
-
-
 // Debugging
 function renderTestGraph() {
-  // var dot = buildGraph(timeline, constraints);
-  // TODO make adaptive
-  graphviz.width(1000);
-  graphviz.height(1500);
-  // turn list of dot commands into string
-  // var dotLines = dot[0 % dot.length];
-  // var dotString = dotLines.join('');
+  // test graph
+  graphviz.width(width);
+  graphviz.height(height);
   var dotString = 'graph {"Long Name" [label="A"]  B[tooltip="origin\ndAH\nbio"]  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed, color=grey]}'
-  // console.log(dotString);
-
-  // render graph in canvas
   graphviz
       .dot(dotString)
       .render();
 }
-
-
-
-
-
 
 
 function test(){
@@ -418,16 +408,19 @@ function test(){
     // var shortName = abbreviateName('Ḥarmalah b. Yaḥyā al-Tugībī');
     // console.log(shortName);
     // console.log(![0,10,10].includes(10));
-    console.log(!(typeof "ljfds" == 'string'));
+    // console.log(!(typeof "ljfds" == 'string'));
+    var margin = 20;
+    var width = window.innerWidth - margin;
+    var height = window.innerHeight - margin;
+    console.log(height);
 }
 
 
 
-
-// Downloads SVGs on the webpage
-// based on svg-crowbar
 function downloadSVG() {
-var doctype = '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
+/** Downloads SVGs on the webpage, based on svg-crowbar. */
+
+  var doctype = '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
 
   window.URL = (window.URL || window.webkitURL);
 
