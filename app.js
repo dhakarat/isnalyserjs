@@ -12,6 +12,13 @@ var tooltip = d3.select("#graph").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0); // init invisibly
 
+// canvas size
+var margin = 20;
+var width = window.innerWidth - margin;
+var height = window.innerHeight - margin;
+
+
+
 
 
 // lookup table for edge types
@@ -354,8 +361,8 @@ function renderGraph() {
   // get main graph as list of constraints
   var dot = buildGraph(timeline, constraints);
   // TODO make adaptive
-  graphviz.width(1000);
-  graphviz.height(1500);
+  graphviz.width(width);
+  graphviz.height(height);
   // turn list of dot commands into string
   var dotLines = dot[0 % dot.length];
   var dotString = dotLines.join('');
@@ -418,7 +425,11 @@ function test(){
     // var shortName = abbreviateName('Ḥarmalah b. Yaḥyā al-Tugībī');
     // console.log(shortName);
     // console.log(![0,10,10].includes(10));
-    console.log(!(typeof "ljfds" == 'string'));
+    // console.log(!(typeof "ljfds" == 'string'));
+    var margin = 20;
+    var width = window.innerWidth - margin;
+    var height = window.innerHeight - margin;
+    console.log(height);
 }
 
 
