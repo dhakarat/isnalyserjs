@@ -360,7 +360,7 @@ function renderGraph() {
   var constraints = matchToTimeline()
   // get main graph as list of constraints
   var dot = buildGraph(timeline, constraints);
-  // TODO make adaptive
+  // adaptive size
   graphviz.width(width);
   graphviz.height(height);
   // turn list of dot commands into string
@@ -383,7 +383,6 @@ function renderGraph() {
 
 
 
-
 function exportGraph() {
   /** Download the rendered graph as svg. */
   downloadSVG();
@@ -391,32 +390,16 @@ function exportGraph() {
 
 
 
-
-
-
-
 // Debugging
 function renderTestGraph() {
-  // var dot = buildGraph(timeline, constraints);
-  // TODO make adaptive
-  graphviz.width(1000);
-  graphviz.height(1500);
-  // turn list of dot commands into string
-  // var dotLines = dot[0 % dot.length];
-  // var dotString = dotLines.join('');
+  // test graph
+  graphviz.width(width);
+  graphviz.height(height);
   var dotString = 'graph {"Long Name" [label="A"]  B[tooltip="origin\ndAH\nbio"]  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed, color=grey]}'
-  // console.log(dotString);
-
-  // render graph in canvas
   graphviz
       .dot(dotString)
       .render();
 }
-
-
-
-
-
 
 
 function test(){
@@ -434,11 +417,10 @@ function test(){
 
 
 
-
-// Downloads SVGs on the webpage
-// based on svg-crowbar
 function downloadSVG() {
-var doctype = '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
+/** Downloads SVGs on the webpage, based on svg-crowbar. */
+
+  var doctype = '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
 
   window.URL = (window.URL || window.webkitURL);
 
