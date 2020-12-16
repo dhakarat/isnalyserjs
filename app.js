@@ -31,7 +31,7 @@ function loadTransmissionsFile() {
         error += "Please make sure to upload a csv file."
         alert(error);
   }
-  // call buildGraph on load
+  // store in reader var
   if (transmissionsFile) {
     transmissionsReader.readAsText(transmissionsFile);
   }      
@@ -50,7 +50,7 @@ function loadTransmittersFile() {
         error += "Please make sure to upload a csv file."
         alert(error);
   }
-  // call buildTimeline on load
+  // store in reader var
   if (transmittersFile) {
     transmittersReader.readAsText(transmittersFile);
   }      
@@ -339,6 +339,14 @@ function postGraphLayout(){
 
 function renderGraph() {
   /** Build a complete graph with timeline and constraints and render it. */
+
+  // check if user uploaded files
+  if (transmissionsReader.result == null) {
+    alert('No transmissions file provided. Plase make sure to upload a valid csv file.');
+  }
+  if (transmittersReader.result == null) {
+    alert('No transmitter file provided. Plase make sure to upload a valid csv file.');
+  }
   // get timeline as list of strings
   var timeline = buildTimeline(stepSize)[0];
   // get constraints as list of strings
