@@ -263,61 +263,59 @@ function displayNodeTooltip() {
 
   var clicked = false; 
   // load transmitters data
+  var clickedNode;
   var dataTransmitters = d3.csvParse(transmittersReader.result);
   // when mouse is on a node
   nodes
-    .on("mouseover", function (d) {
-      // clicked = false;
-      tooltip.html(d)
-        // display summarizing data in tooltip
-        .text(
-          d.key + "\n"
-          + "Year of death: " + getDAH(dataTransmitters, d.key) + "\n"
-          + "City of origin: " + getOrigin(dataTransmitters, d.key) + "\n"
-          + "Bio: " + getBio(dataTransmitters, d.key))
-        // increase opacity of element
-        .style("opacity", 0.99) // 0.9 looks nice
-        // place element where the event happend
-        .style("left", (d3.event.pageX + 15) + "px") 
-        .style("top", (d3.event.pageY - 10) + "px"); 
-  // When mouse is not one a node
-  nodes
-    .on("mouseout", function() {
-      if(!clicked){
-        tooltip.style("opacity", 0); // reduce opacity of element
-      }
-    });
-  nodes
-    .on("click", function (d) { 
-      clicked = true;
-            tooltip.html(d)
-        // display summarizing data in tooltip
-        .text(
-          d.key + "\n"
-          + "Year of death: " + getDAH(dataTransmitters, d.key) + "\n"
-          + "City of origin: " + getOrigin(dataTransmitters, d.key) + "\n"
-          + "Bio: " + getBio(dataTransmitters, d.key))
-        // increase opacity of element
-        .style("opacity", 0.99) // 0.9 looks nice
-        // place element where the event happend
-        .style("left", (d3.event.pageX + 15) + "px") 
-        .style("top", (d3.event.pageY - 10) + "px"); 
-    });
-    d3.select("body").on("click",function(){
-      // if(clicked){
-      //   clicked = false;
-        // TODOOOOOOOOOOO
+    .on("click", function (d) {
+        console.log(clicked);
+      if(clicked){
+        tooltip.html(d)
+          .style("opacity", 0); // 0.9 looks nice
+        clicked=false;
+        return;
+      };
 
-      // }
-    var outside = nodes.filter(equalToEventTarget).empty();
-    if (outside) {
-      console.log('yoyoy');
-      clicked = false;
-    }
-        // tooltip.classed("hidden", true);
-    
-});
+        if(!clicked){
+          clicked=true;
+          tooltip.html(d)
+          // display summarizing data in tooltip
+
+          .text(
+            d.key + "\n"
+            + "Year of death: " + getDAH(dataTransmitters, d.key) + "\n"
+            + "City of origin: " + getOrigin(dataTransmitters, d.key) + "\n"
+            + "Bio: " + getBio(dataTransmitters, d.key))
+          // increase opacity of element
+          .style("opacity", 0.99) // 0.9 looks nice
+          // place element where the event happend
+          .style("left", (d3.event.pageX + 15) + "px") 
+          .style("top", (d3.event.pageY - 10) + "px");
+          return;
+        };
+
   });
+
+
+  // nodes
+  //   .on("click", function (d){
+  //     console.log(clicked);
+
+  //   });
+
+
+
+        // when something that is not node is clicked
+//     d3.select("body").on("click",function(){
+//     var outside = nodes.filter(equalToEventTarget).empty();
+//     if (outside) {
+//       // console.log('yoyoy');
+//       console.log(this);
+//       // clicked = false;
+//     }
+// //         // tooltip.classed("hidden", true);
+    
+// });
 }
 
 function equalToEventTarget() {
@@ -370,6 +368,25 @@ function highlightChain() {
 }
 
 
+function highlightNode() {
+    nodes = d3.selectAll('.node'); //,.edge
+    console.log(nodes);
+    nodes
+    .on("mouseover", function (d) {
+      // d3.select(this).selectAll('path').attr("fill", "#C10E1A");
+        d3.select(this).attr("r", 10).style("fill", "#CC7A28");
+
+    });
+    nodes
+    .on("mouseout", function (d) {
+      // d3.select(this).selectAll('path').attr("fill", "#C10E1A");
+        d3.select(this).attr("r", 10).style("fill", "black");
+
+    });
+}
+
+
+
 
 function getEdgeByTextID(textID) {
   /** Select any edges that contain the given textID. */
@@ -394,6 +411,7 @@ function postGraphLayout(){
   /** Helper function that executes that should remain active, once graph is rendered. */
   highlightChain();
   displayNodeTooltip();
+  highlightNode();
 }
 
 
