@@ -266,6 +266,7 @@ function displayNodeTooltip() {
   var dataTransmitters = d3.csvParse(transmittersReader.result);
   nodes
     .on("click", function (d) {
+      // if tooltip is currently displayed and node gets clicked
       if(clicked){
         tooltip.html(d)
           // hide if clicked again, or other node is clicked
@@ -273,7 +274,7 @@ function displayNodeTooltip() {
         clicked=false;
         return;
       };
-
+      // if no tooltip is displayed and node is clicked
       if(!clicked){
         clicked=true;
         tooltip.html(d)
@@ -289,9 +290,9 @@ function displayNodeTooltip() {
           .style("left", (d3.event.pageX + 15) + "px") 
           .style("top", (d3.event.pageY - 10) + "px");
         return;
-        };
-
-  });
+      };
+    }
+  );
 }
 
 
