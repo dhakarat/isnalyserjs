@@ -227,6 +227,20 @@ function getOrigin(data, key) {
   }
 }
 
+function getBio(data, key) {
+  /** Get origin of a transmitter. */
+  for (var i = 0; i < data.length; i++) {
+    if (data[i]['Transmitters'] == key) {
+      if (data[i]['Bio'] !== undefined){
+        return data[i]['Bio'];
+      }
+      else{
+        return " ";
+      }
+    }
+  }
+}
+
 
 
 function getTextID(data, from, to) {
@@ -245,29 +259,40 @@ function getTextID(data, from, to) {
 function displayNodeTooltip() {
   /** When mouse hovers over a node, display a tooltip with additional information. */
   // select all d3 nodes in the canvas
-  nodes = d3.selectAll('.node'); //,.edge 
+  nodes = d3.selectAll('.node');
+  // init clicked flag with false
+  var clicked = false;
   // load transmitters data
   var dataTransmitters = d3.csvParse(transmittersReader.result);
-  // when mouse is on a node
   nodes
-    .on("mouseover", function (d) {
-      tooltip.html(d)
+    .on("click", function (d) {
+      // if tooltip is currently displayed and node gets clicked
+      if(clicked){
+        tooltip.html(d)
+          // hide if clicked again, or other node is clicked
+          .style("opacity", 0); // 0.9 looks nice
+        clicked=false;
+        return;
+      };
+      // if no tooltip is displayed and node is clicked
+      if(!clicked){
+        clicked=true;
+        tooltip.html(d)
         // display summarizing data in tooltip
-        .text(
-          d.key + "\n"
-          + "Year of death: " + getDAH(dataTransmitters, d.key) + "\n"
-          + "City of origin: " + getOrigin(dataTransmitters, d.key)) 
-        // increase opacity of element
-        .style("opacity", 0.99) // 0.9 looks nice
-        // place element where the event happend
-        .style("left", (d3.event.pageX + 15) + "px") 
-        .style("top", (d3.event.pageY - 10) + "px"); 
-  // When mouse is not one a node
-  nodes
-    .on("mouseout", function() {
-      tooltip.style("opacity", 0); // reduce opacity of element
-    });    
-  });
+          .text(
+            d.key + "\n"
+            + "Year of death: " + getDAH(dataTransmitters, d.key) + "\n"
+            + "City of origin: " + getOrigin(dataTransmitters, d.key) + "\n"
+            + "Bio: " + getBio(dataTransmitters, d.key))
+          // increase opacity of element
+          .style("opacity", 0.99) // 0.9 looks nice
+          // place element where the event happend
+          .style("left", (d3.event.pageX + 15) + "px") 
+          .style("top", (d3.event.pageY - 10) + "px");
+        return;
+      };
+    }
+  );
 }
 
 
@@ -316,6 +341,23 @@ function highlightChain() {
 }
 
 
+function highlightNode() {
+  /** Highlight a node on mouseover. */
+  nodes = d3.selectAll('.node');
+  // change color on mouseover
+  nodes
+    .on("mouseover", function (d) {
+        d3.select(this).attr("r", 10).style("fill", "#225096");
+  });
+  // change back to default on mouseout
+  nodes
+    .on("mouseout", function (d) {
+        d3.select(this).attr("r", 10).style("fill", "black");
+  });
+}
+
+
+
 
 function getEdgeByTextID(textID) {
   /** Select any edges that contain the given textID. */
@@ -340,6 +382,7 @@ function postGraphLayout(){
   /** Helper function that executes that should remain active, once graph is rendered. */
   highlightChain();
   displayNodeTooltip();
+  highlightNode();
 }
 
 
