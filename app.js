@@ -259,28 +259,25 @@ function getTextID(data, from, to) {
 function displayNodeTooltip() {
   /** When mouse hovers over a node, display a tooltip with additional information. */
   // select all d3 nodes in the canvas
-  nodes = d3.selectAll('.node'); //,.edge
-
-  var clicked = false; 
+  nodes = d3.selectAll('.node');
+  // init clicked flag with false
+  var clicked = false;
   // load transmitters data
-  var clickedNode;
   var dataTransmitters = d3.csvParse(transmittersReader.result);
-  // when mouse is on a node
   nodes
     .on("click", function (d) {
-        console.log(clicked);
       if(clicked){
         tooltip.html(d)
+          // hide if clicked again, or other node is clicked
           .style("opacity", 0); // 0.9 looks nice
         clicked=false;
         return;
       };
 
-        if(!clicked){
-          clicked=true;
-          tooltip.html(d)
-          // display summarizing data in tooltip
-
+      if(!clicked){
+        clicked=true;
+        tooltip.html(d)
+        // display summarizing data in tooltip
           .text(
             d.key + "\n"
             + "Year of death: " + getDAH(dataTransmitters, d.key) + "\n"
@@ -291,35 +288,10 @@ function displayNodeTooltip() {
           // place element where the event happend
           .style("left", (d3.event.pageX + 15) + "px") 
           .style("top", (d3.event.pageY - 10) + "px");
-          return;
+        return;
         };
 
   });
-
-
-  // nodes
-  //   .on("click", function (d){
-  //     console.log(clicked);
-
-  //   });
-
-
-
-        // when something that is not node is clicked
-//     d3.select("body").on("click",function(){
-//     var outside = nodes.filter(equalToEventTarget).empty();
-//     if (outside) {
-//       // console.log('yoyoy');
-//       console.log(this);
-//       // clicked = false;
-//     }
-// //         // tooltip.classed("hidden", true);
-    
-// });
-}
-
-function equalToEventTarget() {
-    return this == d3.event.target;
 }
 
 
@@ -369,20 +341,18 @@ function highlightChain() {
 
 
 function highlightNode() {
-    nodes = d3.selectAll('.node'); //,.edge
-    console.log(nodes);
-    nodes
+  /** Highlight a node on mouseover. */
+  nodes = d3.selectAll('.node');
+  // change color on mouseover
+  nodes
     .on("mouseover", function (d) {
-      // d3.select(this).selectAll('path').attr("fill", "#C10E1A");
-        d3.select(this).attr("r", 10).style("fill", "#CC7A28");
-
-    });
-    nodes
+        d3.select(this).attr("r", 10).style("fill", "#225096");
+  });
+  // change back to default on mouseout
+  nodes
     .on("mouseout", function (d) {
-      // d3.select(this).selectAll('path').attr("fill", "#C10E1A");
         d3.select(this).attr("r", 10).style("fill", "black");
-
-    });
+  });
 }
 
 
