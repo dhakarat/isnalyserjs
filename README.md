@@ -9,14 +9,83 @@ For scholars studying __Ḥadīth__ texts, drawing an __isnād__ tree with more 
   <img src="https://user-images.githubusercontent.com/12030245/95599970-13c1dc00-0a52-11eb-96e9-f9969fdd572f.png" width="350">
 
 
+## How to use the `isnalyserjs`
+
+You need two tables in __.csv__ format, one with the transmitters' names, and one with the transmission paths.
+
+See below how the tables must look like and how to upload them.
+
+### The Transmitters File
+
+The transmitters file contains minimum two columns
+1) Transmitter [with the transmitters' full name]
+2) dAH [the transmitters' death date]
+
+If you want more information to be displayed in your graph, you can add one or two columns:
+3) Origin [with the transmitters' city/place of origin]
+4) Bio [with biographical information about the transmitters either as link or as text].\
+
+*add screenshot from data_adhan*
+
+<img src="https://user-images.githubusercontent.com/12030245/102222516-ce071100-3ee3-11eb-986a-70d0f9fd4a32.png" width="200">
 
 
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-lboi">Transmitters</th>
+    <th class="tg-lboi">dAH</th>
+    <th class="tg-lboi">Origin</th>
+    <th class="tg-0pky">Bio</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-lboi">A</td>
+    <td class="tg-lboi">10</td>
+    <td class="tg-lboi">I</td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">...<br></td>
+    <td class="tg-lboi">...<br></td>
+    <td class="tg-lboi">...<br></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">B</td>
+    <td class="tg-0pky">E</td>
+    <td class="tg-0pky">M2</td>
+    <td class="tg-0pky"></td>
+  </tr>
+</tbody>
+</table>  
 
-## How to use it
 
-Users with data can directly upload it and render the corresponding graph. Here we will go trough this process step by step, and show, how the data needs to look like.
+### The Transmission File 
 
-### Upload a Transmissions File 
+This table contains the transmission paths and here is how it is structured.
+
+If, like in our example, Yaḥyá ibn Yaḥyá al-Laythī received from Mālik ibn Anas who received from Yaḥyá ibn Saʿīd al-Umawī a ḥadīth that we call 'MM', the table will look like this:
+
+From                     | To                          | FileName
+------------------------------------------------------------------
+Yaḥyá ibn Saʿīd al-Umawī | Mālik ibn Anas              | MM
+
+Mālik ibn Anas           | Yaḥyá ibn Yaḥyá al-Laythī  | MM
+
+
+Each line contains a transmission path between two transmitters only.
+
+You can also grade the transmission with numbers from 1 to 5. These grades can reflect the transmission terminology, for instance 1 = ḥaddatha; 2 = khabara; 3 = ʿan; etc., or any forms of evaluation and analysis, for instance 1 = contains X; 2 = doesn't contain X; 3 = contains Y; etc. or 1 = ṣaḥīḥ; 2 = ḍaʿīf; etc. Theses grades will determine the form of the transmission line (edge), 1 = solid line; 2 = dotted line; 3 = dashed line; 4 = dashed-dotted line; 5 = thick solid line.
+
+
+From                     | To                          | FileName   | TransmissionType
+-------------------------------------------------------------------------------------
+Yaḥyá ibn Saʿīd al-Umawī | Mālik ibn Anas              | MM         | 5
+
+Mālik ibn Anas           | Yaḥyá ibn Yaḥyá al-Laythī  | MM         | 5
+
 
 <img src="https://user-images.githubusercontent.com/12030245/102222479-c0ea2200-3ee3-11eb-9b18-b7442b7313b8.png" width="200">
 
@@ -59,55 +128,18 @@ Users with data can directly upload it and render the corresponding graph. Here 
 
 
 
-The data format needs to be a `csv` and have at least the `From` and `To` column as shown below. Additional columns that are recognized by the `isnalyserjs` are `FileName`, which corresponds to texts transmitted, and `TransmissionType`, which describes the category of transmission (Ask Maroussia?). Note that the data can have additional columns. For now,  they will be ignored. Feature requests, however, are welcome and encouraged. So if you data has has features that you want to be mapped to a `isnalyserjs` functionality, let us know! 
-
-
-### Upload a Transmitters File
-
-For the transmitters file, only two columns are required. A `Transmitter` and a death data (`dAH`). Additional columns, the `isnalyserjs` can handle are `Orgin` and `Bio`, which can contain biographic information.\
-
-<img src="https://user-images.githubusercontent.com/12030245/102222516-ce071100-3ee3-11eb-986a-70d0f9fd4a32.png" width="200">
-
-
-<table class="tg">
-<thead>
-  <tr>
-    <th class="tg-lboi">Transmitters</th>
-    <th class="tg-lboi">dAH</th>
-    <th class="tg-lboi">Origin</th>
-    <th class="tg-0pky">Bio</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td class="tg-lboi">A</td>
-    <td class="tg-lboi">10</td>
-    <td class="tg-lboi">I</td>
-    <td class="tg-0pky"></td>
-  </tr>
-  <tr>
-    <td class="tg-lboi">...<br></td>
-    <td class="tg-lboi">...<br></td>
-    <td class="tg-lboi">...<br></td>
-    <td class="tg-0pky"></td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">B</td>
-    <td class="tg-0pky">E</td>
-    <td class="tg-0pky">M2</td>
-    <td class="tg-0pky"></td>
-  </tr>
-</tbody>
-</table>  
+Feature requests are welcome and encouraged. So if your data has got features that you want to be mapped to an `isnalyserjs` functionality, let us know! 
 
 ### Step Size 
-This will be the step size in years of the time-line that is rendered next to the graph. The default setting is 15. It can be adjusted according to the data provided. When the data contains many transmitters, a low step size may be useful, while for files with few transmitters over a short timespan, a higher value can be more suitable.
+The death date of the transmitters determine their position vertically in the graph. This function allows to contextualise the transmission paths in time and to highlight the flow of transmission over time with its potential gaps. 
+
+You can decide which time distance you want between each time step. The default setting is 15. It can be adjusted according to the data provided. When the data contains many transmitters, a low step size may be useful, while for files with few transmitters over a short timespan, a higher value can be more suitable. If you see that the graph is too small or too dense, do try to change the time step and render the graph again!
 
   <img src="https://user-images.githubusercontent.com/12030245/102227063-6c49a580-3ee9-11eb-8d8f-f273da15aeab.png" width="200">
 
 
 ### Render Graph
-Now, that the data is loaded and the step size is set, you can press the `Render Graph` button, and our graph will be displayed in the canvas, ready to be explored!
+Now, that the data is loaded and the step size is set, you can press the `Render Graph` button, and the graph will be displayed in the canvas, ready to be explored!
 
   <img src="https://user-images.githubusercontent.com/12030245/102222589-e70fc200-3ee3-11eb-8854-613eeb8bd9c3.png" width="200">
 
