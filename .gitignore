@@ -42,8 +42,7 @@
 #          of readme.md (this is not an ignored file by default)
 # 20140407 Initially Published
 #
-# -----------------------------------------------------------------
-
+# 
 # ignore undisclosed example data
 example_data/transmitters_ali.csv
 example_data/transmissions_ali.csv
@@ -56,6 +55,9 @@ example_data/_transmissions_ali.csv
 
 example_data/corrupt_transmitters.csv
 example_data/corrupt.csv
+
+example_data/transmissions_presentation.csv
+example_data/transmitters_presentation.csv
 
 # ignore all files starting with . or ~
 .*
