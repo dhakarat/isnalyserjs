@@ -1,4 +1,4 @@
-# -----------------------------------------------------------------
+ -----------------------------------------------------------------
 # .gitignore
 # Bare Minimum Git
 # http://ironco.de/bare-minimum-git/
@@ -53,6 +53,9 @@ example_data/transmissions_umar.csv
 example_data/_transmitters_ali.csv
 example_data/_transmissions_ali.csv
 
+
+example_data/Transmission-Adhan.csv
+example_data/Transmitters-Adhan.csv
 example_data/corrupt_transmitters.csv
 example_data/corrupt.csv
 
