@@ -1,0 +1,207 @@
+/*/*/*/* /* The sidebar menu */
+
+/* Hide actual file upload buttons. */
+input[type="file"] {
+    display: none;
+}
+
+
+
+/*Overlay for file upload buttons. */
+.custom-file-upload {
+  font-family: "font-family", Times New Roman, serif;
+  color: #664147;
+  border-radius: 7px;
+  border: 1px solid;  /*cursor: pointer;*/
+  border-color: #9992A0;
+  display: inline-block;
+  padding: 5px 5px;
+  /*cursor: pointer;*/
+    margin: 4px 2px;
+
+  background-color: #F0F3F9;
+  font-size: 20px;
+  width: 186px;
+}
+/* Sidebar */
+.sidenavLeft {
+  width: 210px; /* Set the width of the sidebar */
+  /*position: fixed;  Fixed Sidebar (stay in place on scroll) */
+  /*z-index: 1;  Stay on top */
+  /*top: 0;  Stay at the top */
+  right: 0;
+  /*font-size: ;*/
+  float: left;
+  background-color: #FBF4EF; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+  border-radius: 5px;
+  border: 1px solid;
+  border-color:#C1BEC6;
+
+}
+/* Input field on the left*/
+.sidenavLeft input[type=submit], input[type=file], input[type=text] {
+  width: 200px;
+  border: none;
+  font-family: "font-family", Times New Roman, serif;
+  font-size: 20px;
+  padding: 5px 5px;
+  text-decoration: none;
+  margin: 4px 2px;
+  border-radius: 7px;
+  border: 1px solid;/*cursor: pointer;*/
+  border-color: #9992A0;
+  color: #664147;
+  background-color: #F0F3F9;
+}
+
+/* Step size field*/
+.sidenavLeft input[type=number] {
+  border: none;
+  font-family: "font-family", Times New Roman, serif;
+  font-size: 20px;
+  padding: 5px 5px;
+  text-decoration: none;
+  margin: 4px 2px;
+  border-radius: 7px;
+  border: 1px solid;  /*cursor: pointer;*/
+  border-color: #9992A0;
+  color: #664147;
+  background-color: #F8F7F2;
+}
+
+/* Step size label */
+.sidenavLeft label {
+  padding: 5px ;
+  font-family: "font-family", Times New Roman, serif;
+  font-size: 20px;
+  color: #664147;
+}
+
+.sidenavLeft input[type=submit]:hover, input[type=file]:hover, input[type=text]:hover{
+  background-color: #F8F0F9;
+}
+.sidenavLeft label:hover{
+  background-color: #F8F0F9;
+}
+.sidenavLeft input[type=number]:hover{
+  background-color: #F8F0F9;
+}
+
+.sidenavLeft p {
+  padding: 6px ;
+  font-family: "font-family", Times New Roman, serif;
+  /*font-size: 30px;*/
+  color: #4B3034;
+  display: block;
+}
+
+.sidenavRight {
+  /*height: 100%;  Full-height: remove this if you want "auto" height */
+  width: 300px; /* Set the width of the sidebar */
+  /*position: fixed;  Fixed Sidebar (stay in place on scroll) */
+  /*z-index: 1;  Stay on top */
+  /*margin-top: 400;  Stay at the top */
+  float: right;
+  /*top: 1000;*/
+  right: 0;
+  background-color: #EDD4BF; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+    border-radius: 5px;
+
+}
+
+.sidenavRight a {
+  padding: 6px 8px 6px 16px;
+  font-family: "font-family", Times New Roman, serif;
+  text-decoration: none;
+  font-size: 20px;
+  color: #664147;
+  display: block;
+}
+
+.sidenavRight p {
+  padding: 6px ;
+  font-family: "font-family", Times New Roman, serif;
+  font-size: 20px;
+  color: #664147;
+  display: block;
+}
+.sidenavRight hr {
+  border: 1px dotted;
+  border-color: #664147;
+}
+
+.sidenavRight input[type=submit], input[type=file]{
+  border: none;
+  font-family: "font-family", Times New Roman, serif;
+  font-size: 20px;
+  padding: 5px 5px;
+  text-decoration: none;
+  margin: 4px 2px;
+  border-radius: 10px;
+  border: 1px solid;  /*cursor: pointer;*/
+  border-color: #C7BD94;
+  color: #664147;
+  background-color: #E9E6D8;
+
+}
+.sidenavRight input[type=text]{
+  border: none;
+  font-family: "font-family", Times New Roman, serif;
+  font-size: 20px;
+  padding: 5px 5px;
+  text-decoration: none;
+  margin: 4px 2px;
+  border-radius: 10px;
+  border: 1px solid;  /*cursor: pointer;*/
+  border-color: #D9D2B6;
+  color: #664147;
+  background-color: #F8F7F2;
+}
+
+.sidenavRight input[type=submit]:hover, input[type=file]:hover, input[type=text]:hover{
+  background-color: #D0E1D4;
+
+}
+
+/* Style on-hover tooltips*/
+/*div.tooltip {   
+    position: absolute;
+    text-align: left;         
+    width: 300px;                    
+    height: 70px;                   
+    padding: 5px;               
+    font-family: "font-family", Times New Roman, serif;
+    color: #664147;
+    background: #E4BE9E; 
+    border: 0px;        
+    border-radius: 8px;         
+    pointer-events: none;           
+}
+*/
+div.tooltip {   
+    position: absolute;
+    text-align: left;         
+    padding: 5px;               
+    font-family: "Times New Roman", Times, serif;
+    color: #664147;
+    background: white; 
+    border: 1px solid #777777;
+    border-radius: 6px;         
+    pointer-events: none;           
+}
+
+
+
+div.chain {
+    color: #664147;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+} */*/*/*/
