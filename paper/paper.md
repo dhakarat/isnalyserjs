@@ -22,18 +22,39 @@ bibliography: paper.bib
 ---
 
 # Summary
-Islamic scholars model the transmission of Ḥadīth texts using isnād graphs. Nodes represent people transmitting texts and edges denote transmissions of texts between transmitters. Traditionally, such graphs are drawn by hand. As isnād graphs can become really large, this task can be very tedious. Here, we present the `isnalyser` toolset, a simple tool to automate the drawing of isnād graphs. Moreover, our proposed application allows users to interactively inspect their data. We provide a `Python` package as well as a `Javascript`-based application, with the `isnalyserjs`.
+Islamic scholars model the transmission of Ḥadīth texts using isnād graphs. Nodes represent people transmitting texts and edges denote transmissions of texts between transmitters. Traditionally, such graphs are drawn by hand. As isnād graphs can become really large, this task can be very tedious.
+
+Here, we present the `isnalyser`, a simple set of tools to automate the drawing of isnād graphs. Moreover, our proposed application allows users to interactively inspect their data. We provide a `Python` package as well as a `Javascript`-based application, with the `isnalyserjs`.
 
 # Motivation
-Tracing the roots of Ḥadīth texts is an active topic of debate. Isnād graphs provide a scientific approach to disentangling the web of possible transmissions. Moreover, resulting visualizations are a foundation for discourse...
 
+Tracing the roots of Ḥadīth texts is an active topic of debate. Isnād graphs provide a scientific approach to disentangling the web of possible transmissions. Moreover, resulting visualizations are a foundation for discourse. Drawing isnād trees is a laborious process. In a manual approach, data and visualization are separate which makes it prone to errors and hard to replicate. The automatic drawing of isnād trees could alleviate this as the visualization is strictly defined by the data itself, thus linking data and visualization in a deterministic manner. 
 
+Note that, the much more challenging process of collecting data is not automatized by the `isnalyser` and remain task of the scholar studying the hadīth texts . Only, the more tedious, and error prone task of visualizing the data is  handled by the proposed `isnalyser`. This can make it a useful tool when collecting data, as possible errors can be spotted more easily.
+
+## Open ends
+
+While being useful on its own already, our software further provides the base for a collaborative platform, where isnād trees can be shared and stored in a publicly accessible database. This could help make hadīth research more transparent and collaborative, a long standing challenge a commuinty of digital Islam science researchers strives to solve (cite digital hadith network). Further, the `isnalyser` could be become the 'front-end' of a data-collecting software and help to debug or verify such tools and eventually even become a fully automatic tool.
 
 # Description
 
+## Data structure
+
+The data structure plays a central role. Inspired by relational database design, we propose to have two tables: one defining transmitters (nodes) and one defining transmissions (edges).
+
+## Python version
+
+## isnalyserjs
 
 
-# Citations
+
+# Acknowledgements
+
+
+
+
+
+# References
 
 Citations to entries in paper.bib should be in
 [rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
