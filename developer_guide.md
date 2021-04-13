@@ -1,8 +1,13 @@
 # What is the `isnalyserjs`?
 Islamic scholars model the transmission of Ḥadīth texts using isnād graphs. Nodes represent people transmitting texts and edges denote transmissions of texts between transmitters. Traditionally, such graphs are drawn by hand. As isnād graphs can become really large, this task can be very tedious. The `isnalyserjs` is a simple tool to automate the drawing of isnād graphs. Moreover, our proposed application allows users to interactively inspect their data.
+
 # How can I make changes?
 
 The code intended to be easy to work with and is rather simple. Here, we'll go over some prerequisites, an overview, and implement an example feature together.
+
+## Data structure - Transmitters and Transmissions
+
+Before making any changes, here is a quick introduction to the structure of the data. Each isnād should be defined in a *transmitters* file and a *transmissions* file. The folder `example_data/` contains two examples that might be helpful. Rows in the *transmissions* file define nodes. Columns are *Name* (determines node label), *dAH* (denotes transmitter's death data and is used to determine graph layout), and *Origin* (denotes city of origin of a transmitter and is displayed in the info box). *Name* and *dAH* are mandatory.  Names serve as identifiers and are used to describe transmissions in the *transmissions* file. Here, every row defines a transmission/edge between two transmitters. Mandatory columns thus are *From* and *To*. Further information can be given in the columns *FileName* (denotes text and determines edge label) and *TransmissionType* (determines edge style).
 
 ## What should I consider when making changes?
 
