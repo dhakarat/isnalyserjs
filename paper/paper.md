@@ -42,21 +42,56 @@ Note that, the much more challenging process of collecting data is not automatiz
 
 - `abbrevation` to ensure a clean graph layout, names of transmitters with more than $n$ characters are abbreviated. Only the first and last few characters are shown with $...$ in between.
 - `colors` creates a color scheme based on the number of cities of origin, assigning each origin a unique color.
-- `graph` serves as main module that uses the other modules to create an isnad graph. 
+- `graph` serves as main module that parses the data and then uses the other modules to create an isnad graph. 
 - `paths` merges redundant edges that will occur if transmissions overlap. 
 - `ranking` creates a timeline as a subgraph. For each timeline node, it gives a list of nodes that fall into the 'bins' the timeline nodes form.
 
-To publish the software, we choose the form of a `PyPI` (cite pypi) package. 
+We published this version of the isnalyser as a `PyPI` (cite pypi) package.
 
-**The interactive isnalyserjs** - The make the `isnalyser` accessible to users without coding knowledge, we propose a follow-up, interactive version. Based on Javascript 
+**The interactive isnalyserjs** - The make the `isnalyser` accessible to users without coding knowledge, we developed a follow-up, interactive version. This version runs in the browser as a Javascript application. We use third party libraries d3 and graphvisjs(cite d3, graphvisjs)
 
-- `index.html`
-- `app.js`
-- `style.css`
+- `index.html` defines the structure and interface of the application. This involves buttons and fields for the user to interact with as well as a canvas where the graph is renders and can be explored. It also handles imports of third party libraries.
+- `app.js` contains the core functionality. It parses *transmitters* and *transmissions* file and uses the information to form a graph layout. Once the graph layout is determined, additional functions determine visual aspects of the graph. These include highlighting of edges, on hover as well as displaying additional information of transmitters, if a node is selected by the user.
+- `style.css` 
+
+# Example
+
+To illustrate the usage of the proposed isnalyser, we will run through an example here.
+
+Transmitters|dAH|Origin
+- | - |-
+A|10|I
+B|23|J
+C|25|K
+D|35|I
+E|47|K
+F|50|K
+G|70|I
+H|72|J
+
+From|To|FileName|TransmissionType
+-|-|-|-
+A|D|M1|0
+B|E|M2|1
+B|G|M3|2
+C|G|M4|3
+C|H|M5|0
+D|F|M6|1
+D|G|M7|2
+
+![Example of a simple isnad tree.\label{fig:example}](isnalyser_graph.svg)
 
 # Open ends
 
 While being useful on its own already, our software further provides the base for a collaborative platform, where isnād trees can be shared and stored in a publicly accessible database. This could help make hadīth research more transparent and collaborative, a long standing challenge a commuinty of digital Islam science researchers strives to solve (cite digital hadith network). Further, the `isnalyser` could be become the 'front-end' of a data-collecting software and help to debug or verify such tools and eventually even become a fully automatic tool.
+
+
+
+
+
+
+
+... The focus of our work is providing accessible data and making it reproducible
 
 # Acknowledgements
 
