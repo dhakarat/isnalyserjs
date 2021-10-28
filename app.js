@@ -410,12 +410,6 @@ function renderGraph() {
   var dotLines = dot[0 % dot.length];
   var dotString = dotLines.join('');
 
-  // debugging graphs
-  // var dotString = 'graph { node [style="filled" tooltip=" "]"Long Name" [label="A"]  B  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed] "Long Name"--C[label="AAA"]}'
-  // var dotString = 'graph { node [style="filled" tooltip=" "] A B C D E F          A--B[label="m1,m2,m3"]  A--C[label="m3"]  B--D[label="m1,m2"] C--E[label="m3"] D--E[label="m2"] D--F[label="m1"]}'
-
-  // console.log(dotString);
-
   // render graph in canvas
   graphviz
       .dot(dotString)
@@ -449,15 +443,7 @@ function renderTestGraph() {
 
 function test(){
   /** placeholder function for buttons... */
-    // console.log('working...');
-    // var shortName = abbreviateName('Ḥarmalah b. Yaḥyā al-Tugībī');
-    // console.log(shortName);
-    // console.log(![0,10,10].includes(10));
-    // console.log(!(typeof "ljfds" == 'string'));
-    var margin = 20;
-    var width = window.innerWidth - margin;
-    var height = window.innerHeight - margin;
-    console.log(height);
+    console.log('working...');
 }
 
 
@@ -612,8 +598,7 @@ function downloadSVG() {
       svg.setAttribute("version", "1.1");
 
       var defsEl = document.createElement("defs");
-      svg.insertBefore(defsEl, svg.firstChild); //TODO   .insert("defs", ":first-child")
-      // defsEl.setAttribute("class", "svg-crowbar");
+      svg.insertBefore(defsEl, svg.firstChild);
 
       var styleEl = document.createElement("style")
       defsEl.appendChild(styleEl);
