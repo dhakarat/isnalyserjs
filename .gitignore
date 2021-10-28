@@ -1,4 +1,4 @@
-# -----------------------------------------------------------------
+ -----------------------------------------------------------------
 # .gitignore
 # Bare Minimum Git
 # http://ironco.de/bare-minimum-git/
@@ -42,8 +42,7 @@
 #          of readme.md (this is not an ignored file by default)
 # 20140407 Initially Published
 #
-# -----------------------------------------------------------------
-
+# 
 # ignore undisclosed example data
 example_data/transmitters_ali.csv
 example_data/transmissions_ali.csv
@@ -54,8 +53,14 @@ example_data/transmissions_umar.csv
 example_data/_transmitters_ali.csv
 example_data/_transmissions_ali.csv
 
+
+example_data/Transmission-Adhan.csv
+example_data/Transmitters-Adhan.csv
 example_data/corrupt_transmitters.csv
 example_data/corrupt.csv
+
+example_data/transmissions_presentation.csv
+example_data/transmitters_presentation.csv
 
 # ignore all files starting with . or ~
 .*

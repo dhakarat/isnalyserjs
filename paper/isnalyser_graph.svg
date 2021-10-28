@@ -1,0 +1,241 @@
+<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg width="841" height="527" viewBox="0 0 630.75 395.25" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs xmlns="http://www.w3.org/1999/xhtml"><style type="text/css"><![CDATA[]]></style></defs>
+<g id="graph0" class="graph" transform="translate(55.43570012119363,316.99061454959394) scale(0.6561056272959809)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-452.4 392,-452.4 392,4 -4,4"/>
+<!-- A -->
+<g id="node1" class="node">
+<title>A</title>
+<g id="a_node1"><a xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="78,-448.4 24,-448.4 24,-412.4 78,-412.4 78,-448.4"/>
+<text text-anchor="middle" x="51" y="-426.2" font-family="Times,serif" font-size="14.00">A</text>
+</a>
+</g>
+</g>
+<!-- D -->
+<g id="node4" class="node" r="10" style="fill: black;">
+<title>D</title>
+<g id="a_node4"><a xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="78,-359.6 24,-359.6 24,-323.6 78,-323.6 78,-359.6"/>
+<text text-anchor="middle" x="51" y="-337.4" font-family="Times,serif" font-size="14.00">D</text>
+</a>
+</g>
+</g>
+<!-- A&#45;&gt;D -->
+<g id="edge6" class="edge">
+<title>A-&gt;D</title>
+<path fill="none" stroke="black" d="M51,-412.25C51,-400.12 51,-383.62 51,-369.72"/>
+<polygon fill="black" stroke="black" points="54.5,-369.71 51,-359.71 47.5,-369.71 54.5,-369.71"/>
+<g id="a_edge6-label"><a xlink:title=" ">
+<text text-anchor="middle" x="60.72" y="-381.8" font-family="Times,serif" font-size="14.00">M1</text>
+</a>
+</g>
+</g>
+<!-- B -->
+<g id="node2" class="node">
+<title>B</title>
+<g id="a_node2"><a xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="200,-448.4 146,-448.4 146,-412.4 200,-412.4 200,-448.4"/>
+<text text-anchor="middle" x="173" y="-426.2" font-family="Times,serif" font-size="14.00">B</text>
+</a>
+</g>
+</g>
+<!-- E -->
+<g id="node5" class="node" r="10" style="fill: black;">
+<title>E</title>
+<g id="a_node5"><a xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="164,-270.8 110,-270.8 110,-234.8 164,-234.8 164,-270.8"/>
+<text text-anchor="middle" x="137" y="-248.6" font-family="Times,serif" font-size="14.00">E</text>
+</a>
+</g>
+</g>
+<!-- B&#45;&gt;E -->
+<g id="edge7" class="edge">
+<title>B-&gt;E</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M169.48,-412.24C163.22,-381.69 150.09,-317.63 142.58,-281.01"/>
+<polygon fill="black" stroke="black" points="145.97,-280.12 140.53,-271.03 139.11,-281.53 145.97,-280.12"/>
+<g id="a_edge7-label"><a xlink:title=" ">
+<text text-anchor="middle" x="168.72" y="-337.4" font-family="Times,serif" font-size="14.00">M2</text>
+</a>
+</g>
+</g>
+<!-- G -->
+<g id="node7" class="node">
+<title>G</title>
+<g id="a_node7"><a xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="227,-109 173,-109 173,-73 227,-73 227,-109"/>
+<text text-anchor="middle" x="200" y="-86.8" font-family="Times,serif" font-size="14.00">G</text>
+</a>
+</g>
+</g>
+<!-- B&#45;&gt;G -->
+<g id="edge8" class="edge">
+<title>B-&gt;G</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M181.69,-412.27C189.58,-395.1 200,-367.69 200,-342.6 200,-342.6 200,-342.6 200,-163 200,-148.65 200,-132.67 200,-119.51"/>
+<polygon fill="black" stroke="black" points="203.5,-119.22 200,-109.22 196.5,-119.22 203.5,-119.22"/>
+<g id="a_edge8-label"><a xlink:title=" ">
+<text text-anchor="middle" x="209.72" y="-248.6" font-family="Times,serif" font-size="14.00">M3</text>
+</a>
+</g>
+</g>
+<!-- C -->
+<g id="node3" class="node">
+<title>C</title>
+<g id="a_node3"><a xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="299,-359.6 245,-359.6 245,-323.6 299,-323.6 299,-359.6"/>
+<text text-anchor="middle" x="272" y="-337.4" font-family="Times,serif" font-size="14.00">C</text>
+</a>
+</g>
+</g>
+<!-- C&#45;&gt;G -->
+<g id="edge9" class="edge">
+<title>C-&gt;G</title>
+<path fill="none" stroke="black" stroke-width="2" d="M268.07,-323.51C259.52,-287.03 238.08,-198.97 214,-127 213.09,-124.27 212.07,-121.44 211.02,-118.62"/>
+<polygon fill="black" stroke="black" stroke-width="2" points="214.28,-117.34 207.38,-109.3 207.75,-119.89 214.28,-117.34"/>
+<g id="a_edge9-label"><a xlink:title=" ">
+<text text-anchor="middle" x="249.72" y="-204.2" font-family="Times,serif" font-size="14.00">M4</text>
+</a>
+</g>
+</g>
+<!-- H -->
+<g id="node8" class="node">
+<title>H</title>
+<g id="a_node8"><a xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="316,-109 262,-109 262,-73 316,-73 316,-109"/>
+<text text-anchor="middle" x="289" y="-86.8" font-family="Times,serif" font-size="14.00">H</text>
+</a>
+</g>
+</g>
+<!-- C&#45;&gt;H -->
+<g id="edge10" class="edge">
+<title>C-&gt;H</title>
+<path fill="none" stroke="black" d="M273.17,-323.51C276.07,-281.11 283.61,-170.8 287.14,-119.27"/>
+<polygon fill="black" stroke="black" points="290.63,-119.42 287.82,-109.21 283.65,-118.94 290.63,-119.42"/>
+<g id="a_edge10-label"><a xlink:title=" ">
+<text text-anchor="middle" x="290.72" y="-204.2" font-family="Times,serif" font-size="14.00">M5</text>
+</a>
+</g>
+</g>
+<!-- F -->
+<g id="node6" class="node">
+<title>F</title>
+<g id="a_node6"><a xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="54,-270.8 0,-270.8 0,-234.8 54,-234.8 54,-270.8"/>
+<text text-anchor="middle" x="27" y="-248.6" font-family="Times,serif" font-size="14.00">F</text>
+</a>
+</g>
+</g>
+<!-- D&#45;&gt;F -->
+<g id="edge11" class="edge">
+<title>D-&gt;F</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M46.26,-323.45C42.91,-311.32 38.34,-294.82 34.5,-280.92"/>
+<polygon fill="black" stroke="black" points="37.77,-279.62 31.73,-270.91 31.02,-281.48 37.77,-279.62"/>
+<g id="a_edge11-label"><a xlink:title=" ">
+<text text-anchor="middle" x="51.72" y="-293" font-family="Times,serif" font-size="14.00">M6</text>
+</a>
+</g>
+</g>
+<!-- D&#45;&gt;G -->
+<g id="edge12" class="edge">
+<title>D-&gt;G</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M58.13,-323.3C67.15,-301.98 83.62,-264.88 101,-234.8 125.75,-191.95 159.43,-145.39 180.43,-117.46"/>
+<polygon fill="black" stroke="black" points="183.28,-119.5 186.52,-109.41 177.69,-115.28 183.28,-119.5"/>
+<g id="a_edge12-label"><a xlink:title=" ">
+<text text-anchor="middle" x="132.72" y="-204.2" font-family="Times,serif" font-size="14.00">M7</text>
+</a>
+</g>
+</g>
+<!-- 10 -->
+<g id="node9" class="node">
+<title>10</title>
+<g id="a_node9"><a xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="388,-448.4 334,-448.4 334,-412.4 388,-412.4 388,-448.4"/>
+<text text-anchor="middle" x="361" y="-426.2" font-family="Times,serif" font-size="14.00">10</text>
+</a>
+</g>
+</g>
+<!-- 25 -->
+<g id="node10" class="node">
+<title>25</title>
+<g id="a_node10"><a xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="388,-359.6 334,-359.6 334,-323.6 388,-323.6 388,-359.6"/>
+<text text-anchor="middle" x="361" y="-337.4" font-family="Times,serif" font-size="14.00">25</text>
+</a>
+</g>
+</g>
+<!-- 10&#45;&gt;25 -->
+<g id="edge1" class="edge">
+<title>10-&gt;25</title>
+<g id="a_edge1"><a xlink:title=" ">
+<path fill="none" stroke="black" stroke-width="3" d="M361,-412.25C361,-397.03 361,-374.92 361,-359.71"/>
+</a>
+</g>
+</g>
+<!-- 40 -->
+<g id="node11" class="node">
+<title>40</title>
+<g id="a_node11"><a xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="388,-270.8 334,-270.8 334,-234.8 388,-234.8 388,-270.8"/>
+<text text-anchor="middle" x="361" y="-248.6" font-family="Times,serif" font-size="14.00">40</text>
+</a>
+</g>
+</g>
+<!-- 25&#45;&gt;40 -->
+<g id="edge2" class="edge">
+<title>25-&gt;40</title>
+<g id="a_edge2"><a xlink:title=" ">
+<path fill="none" stroke="black" stroke-width="3" d="M361,-323.45C361,-308.23 361,-286.12 361,-270.91"/>
+</a>
+</g>
+</g>
+<!-- 55 -->
+<g id="node12" class="node" r="10" style="fill: black;">
+<title>55</title>
+<g id="a_node12"><a xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="388,-182 334,-182 334,-146 388,-146 388,-182"/>
+<text text-anchor="middle" x="361" y="-159.8" font-family="Times,serif" font-size="14.00">55</text>
+</a>
+</g>
+</g>
+<!-- 40&#45;&gt;55 -->
+<g id="edge3" class="edge">
+<title>40-&gt;55</title>
+<g id="a_edge3"><a xlink:title=" ">
+<path fill="none" stroke="black" stroke-width="3" d="M361,-234.65C361,-219.43 361,-197.32 361,-182.11"/>
+</a>
+</g>
+</g>
+<!-- 70 -->
+<g id="node13" class="node">
+<title>70</title>
+<g id="a_node13"><a xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="388,-109 334,-109 334,-73 388,-73 388,-109"/>
+<text text-anchor="middle" x="361" y="-86.8" font-family="Times,serif" font-size="14.00">70</text>
+</a>
+</g>
+</g>
+<!-- 55&#45;&gt;70 -->
+<g id="edge4" class="edge">
+<title>55-&gt;70</title>
+<g id="a_edge4"><a xlink:title=" ">
+<path fill="none" stroke="black" stroke-width="3" d="M361,-145.81C361,-134.65 361,-120.16 361,-109.03"/>
+</a>
+</g>
+</g>
+<!-- 85 -->
+<g id="node14" class="node">
+<title>85</title>
+<g id="a_node14"><a xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="388,-36 334,-36 334,0 388,0 388,-36"/>
+<text text-anchor="middle" x="361" y="-13.8" font-family="Times,serif" font-size="14.00">85</text>
+</a>
+</g>
+</g>
+<!-- 70&#45;&gt;85 -->
+<g id="edge5" class="edge">
+<title>70-&gt;85</title>
+<g id="a_edge5"><a xlink:title=" ">
+<path fill="none" stroke="black" stroke-width="3" d="M361,-72.81C361,-61.65 361,-47.16 361,-36.03"/>
+</a>
+</g>
+</g>
+</g>
+</svg>
