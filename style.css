@@ -11,15 +11,15 @@ input[type="file"] {
 .custom-file-upload {
   font-family: "font-family", Times New Roman, serif;
   color: #664147;
-  border-radius: 10px;
+  border-radius: 7px;
   border: 1px solid;  /*cursor: pointer;*/
-  border-color: #C7BD94;
+  border-color: #9992A0;
   display: inline-block;
   padding: 5px 5px;
   /*cursor: pointer;*/
     margin: 4px 2px;
 
-  background-color: #E9E6D8;
+  background-color: #F0F3F9;
   font-size: 20px;
   width: 186px;
 }
@@ -30,11 +30,14 @@ input[type="file"] {
   /*z-index: 1;  Stay on top */
   /*top: 0;  Stay at the top */
   right: 0;
+  /*font-size: ;*/
   float: left;
-  background-color: #EDD4BF; /* Black */
+  background-color: #FBF4EF; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
   border-radius: 5px;
+  border: 1px solid;
+  border-color:#C1BEC6;
 
 }
 /* Input field on the left*/
@@ -46,11 +49,11 @@ input[type="file"] {
   padding: 5px 5px;
   text-decoration: none;
   margin: 4px 2px;
-  border-radius: 10px;
+  border-radius: 7px;
   border: 1px solid;/*cursor: pointer;*/
-  border-color: #C7BD94;
+  border-color: #9992A0;
   color: #664147;
-  background-color: #E9E6D8;
+  background-color: #F0F3F9;
 }
 
 /* Step size field*/
@@ -61,9 +64,9 @@ input[type="file"] {
   padding: 5px 5px;
   text-decoration: none;
   margin: 4px 2px;
-  border-radius: 10px;
+  border-radius: 7px;
   border: 1px solid;  /*cursor: pointer;*/
-  border-color: #D9D2B6;
+  border-color: #9992A0;
   color: #664147;
   background-color: #F8F7F2;
 }
@@ -77,20 +80,20 @@ input[type="file"] {
 }
 
 .sidenavLeft input[type=submit]:hover, input[type=file]:hover, input[type=text]:hover{
-  background-color: #D0E1D4;
+  background-color: #F8F0F9;
 }
 .sidenavLeft label:hover{
-  background-color: #D0E1D4;
+  background-color: #F8F0F9;
 }
 .sidenavLeft input[type=number]:hover{
-  background-color: #D0E1D4;
+  background-color: #F8F0F9;
 }
 
 .sidenavLeft p {
   padding: 6px ;
   font-family: "font-family", Times New Roman, serif;
-  font-size: 20px;
-  color: #664147;
+  /*font-size: 30px;*/
+  color: #4B3034;
   display: block;
 }
 
