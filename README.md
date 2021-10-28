@@ -25,7 +25,6 @@ If you want more information to be displayed in your graph, you can add one or t
 3) Origin [with the transmitters' city/place of origin]
 4) Bio [with biographical information about the transmitters either as link or as text].\
 
-*add screenshot from data_adhan*
 
 <img src="https://user-images.githubusercontent.com/12030245/102222516-ce071100-3ee3-11eb-986a-70d0f9fd4a32.png" width="200">
 
