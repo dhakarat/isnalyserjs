@@ -12,13 +12,11 @@ input[type="file"] {
   font-family: "font-family", Times New Roman, serif;
   color: #664147;
   border-radius: 7px;
-  border: 1px solid;  /*cursor: pointer;*/
+  border: 1px solid;
   border-color: #9992A0;
   display: inline-block;
   padding: 5px 5px;
-  /*cursor: pointer;*/
-    margin: 4px 2px;
-
+  margin: 4px 2px;
   background-color: #F0F3F9;
   font-size: 20px;
   width: 186px;
@@ -26,14 +24,10 @@ input[type="file"] {
 /* Sidebar */
 .sidenavLeft {
   width: 210px; /* Set the width of the sidebar */
-  /*position: fixed;  Fixed Sidebar (stay in place on scroll) */
-  /*z-index: 1;  Stay on top */
-  /*top: 0;  Stay at the top */
   right: 0;
-  /*font-size: ;*/
   float: left;
-  background-color: #FBF4EF; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
+  background-color: #FBF4EF;
+  overflow-x: hidden;
   padding-top: 20px;
   border-radius: 5px;
   border: 1px solid;
@@ -50,7 +44,7 @@ input[type="file"] {
   text-decoration: none;
   margin: 4px 2px;
   border-radius: 7px;
-  border: 1px solid;/*cursor: pointer;*/
+  border: 1px solid;
   border-color: #9992A0;
   color: #664147;
   background-color: #F0F3F9;
@@ -58,6 +52,7 @@ input[type="file"] {
 
 /* Step size field*/
 .sidenavLeft input[type=number] {
+  width: 100px;
   border: none;
   font-family: "font-family", Times New Roman, serif;
   font-size: 20px;
@@ -65,7 +60,7 @@ input[type="file"] {
   text-decoration: none;
   margin: 4px 2px;
   border-radius: 7px;
-  border: 1px solid;  /*cursor: pointer;*/
+  border: 1px solid;  
   border-color: #9992A0;
   color: #664147;
   background-color: #F8F7F2;
@@ -100,14 +95,10 @@ input[type="file"] {
 .sidenavRight {
   /*height: 100%;  Full-height: remove this if you want "auto" height */
   width: 300px; /* Set the width of the sidebar */
-  /*position: fixed;  Fixed Sidebar (stay in place on scroll) */
-  /*z-index: 1;  Stay on top */
-  /*margin-top: 400;  Stay at the top */
   float: right;
-  /*top: 1000;*/
   right: 0;
-  background-color: #EDD4BF; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
+  background-color: #EDD4BF;
+  overflow-x: hidden;
   padding-top: 20px;
     border-radius: 5px;
 
@@ -142,7 +133,7 @@ input[type="file"] {
   text-decoration: none;
   margin: 4px 2px;
   border-radius: 10px;
-  border: 1px solid;  /*cursor: pointer;*/
+  border: 1px solid;  
   border-color: #C7BD94;
   color: #664147;
   background-color: #E9E6D8;
@@ -156,7 +147,7 @@ input[type="file"] {
   text-decoration: none;
   margin: 4px 2px;
   border-radius: 10px;
-  border: 1px solid;  /*cursor: pointer;*/
+  border: 1px solid;  
   border-color: #D9D2B6;
   color: #664147;
   background-color: #F8F7F2;
