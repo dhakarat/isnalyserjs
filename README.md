@@ -4,7 +4,7 @@ The Interactive Isnalyser
 
 ## Automated isnād tree visualisations
 
-For scholars studying __Ḥadīth__ texts, drawing an __isnād__ tree with more than 40 transmitters is a tedious work and finding the right medium to desplay it fully can even prove to be impossible. The `isnalyserjs` is a simple program for the automation of __isnād__ trees drawing and their interactive exploration.\
+For scholars studying __Ḥadīth__ texts, drawing an __isnād__ tree with more than 40 transmitters is a tedious work and finding the right medium to desplay it fully can even prove to be impossible. The `isnalyserjs` is a simple program for the automation of __isnād__ trees drawing and their interactive exploration.
 
   <img src="https://user-images.githubusercontent.com/12030245/95599970-13c1dc00-0a52-11eb-96e9-f9969fdd572f.png" width="350">
 
@@ -23,7 +23,7 @@ The transmitters file contains minimum two columns
 
 If you want more information to be displayed in your graph, you can add one or two columns:
 3) Origin [with the transmitters' city/place of origin]
-4) Bio [with biographical information about the transmitters either as link or as text].\
+4) Bio [with biographical information about the transmitters either as link or as text].
 
 
 <img src="https://user-images.githubusercontent.com/12030245/102222516-ce071100-3ee3-11eb-986a-70d0f9fd4a32.png" width="200">

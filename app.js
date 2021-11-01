@@ -427,25 +427,11 @@ function exportGraph() {
 
 
 
-// Debugging
-function renderTestGraph() {
-  // test graph
-  graphviz.width(width);
-  graphviz.height(height);
-  var dotString = 'graph {"Long Name" [label="A"]  B[tooltip="origin\ndAH\nbio"]  C[label=<<font color="red"><b>C</b></font>>]          "Long Name"--B[label="some text" style=dashed, color=grey]}'
-  graphviz
-      .dot(dotString)
-      .render()
-      // .on("end", postGraphLayout)
-      ;
-}
-
 
 function test(){
   /** placeholder function for buttons... */
     console.log('working...');
 }
-
 
 
 function downloadSVG() {
@@ -667,3 +653,19 @@ function downloadSVG() {
     return styles;
   }
 }
+
+
+ 
+function renderDefaultGraph() {
+  /** Render a hardcoded example graph when refreshing the page (or for debugging).*/
+  graphviz.width(width);
+  graphviz.height(height);
+  // example graph
+  var dotString = 'strict digraph  { Example node [style="filled" fillcolor = "white"  shape = "none" tooltip=" "] "A"[label="A"] "B"[label="B"] "C"[label="C"] "D"[label="D"] "E"[label="E"] "F"[label="F"] "G"[label="G"] "H"[label="H"] subgraph { node [shape=none] 10->25 [penwidth = 3, arrowhead = None tooltip=" "] 25->40 [penwidth = 3, arrowhead = None tooltip=" "] 40->55 [penwidth = 3, arrowhead = None tooltip=" "] 55->70 [penwidth = 3, arrowhead = None tooltip=" "] 70->85 [penwidth = 3, arrowhead = None tooltip=" "]}{ rank=same 10 "A" "B" }{ rank=same 25 "C" "D" }{ rank=same 40 "E" "F" }{ rank=same 55 }{ rank=same 70 "G" "H" } "A" -> "D" [labeltooltip=" " label="M1" style=solid ] "B" -> "E" [labeltooltip=" " label="M2" style=dashed ] "B" -> "G" [labeltooltip=" " label="M3" style=dotted ] "C" -> "G" [labeltooltip=" " label="M4" style=bold ] "C" -> "H" [labeltooltip=" " label="M5" style=solid ] "D" -> "F" [labeltooltip=" " label="M6" style=dashed ] "D" -> "G" [labeltooltip=" " label="M7" style=dotted ]}'
+  graphviz
+      .dot(dotString)
+      .render()
+     ;
+}
+// load on refresh
+renderDefaultGraph()
