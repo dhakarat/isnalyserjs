@@ -50,3 +50,25 @@ To keep user-developer interaction transparent, we encourage everyone to use **i
 ## Documentation
 
 Documentation is in-line. Make sure that any changes you make are properly commented. The purpose of functions should be summarized in a docstring. Any piece of code that is not self-explanatory should be explained with a comment.
+
+
+## Deployment
+The `isnalyserjs` can be deployed using, for example, [`caddy`](https://caddyserver.com/). `caddy` is an open-source web server that automatically deals with nasty https certificates, static file serving, reverse proxy, and other things. We deployed the `isnalyserjs` on an OpenStack instance using 
+```bash
+# Caddyfile
+{
+    http_port 80
+}
+
+http:// {
+    root * /home/ubuntu/projects/isnalyserjs/
+    encode gzip
+    file_server
+      route /isnalyser {
+        uri strip_prefix /isnalyser
+        reverse_proxy :80
+  }
+}
+```
+as `Caddyfile` (no extension). With this `Caddyfile`, the server can be started through the command:
+`bash caddy run --config /PATH/TO/Caddyfile`. 
